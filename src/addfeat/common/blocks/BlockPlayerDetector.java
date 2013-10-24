@@ -4,8 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import addfeat.common.AddFeat;
 import addfeat.common.ModInfo;
@@ -39,6 +39,14 @@ public class BlockPlayerDetector extends BlockContainer {
 	public TileEntity createNewTileEntity(World world) {
 		
 		return new TileEntityPlayerDetector();
+	}
+	
+	@Override
+	public int isProvidingWeakPower(IBlockAccess par1iBlockAccess, int par2,
+			int par3, int par4, int par5) {
+		return TileEntityPlayerDetector.flag;
+			
+		}
 	}
 
 	
