@@ -22,6 +22,7 @@ public class BlockInfo {
 	public static final String DETECTOR_UNLOCALIZED_NAME = "playerDetector";
 	public static final String DETECTOR_NAME = "Player Detector";
 	public static final String DETECTOR_OFF = "detectorOff";
+	public static final String DETECTOR_ON = "detectorOn";
 
 	public static int BOMB_ID;
 	public static final String BOMB_KEY = "Bomb";

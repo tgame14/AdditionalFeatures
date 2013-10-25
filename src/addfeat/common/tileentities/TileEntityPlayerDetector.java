@@ -1,24 +1,26 @@
 package addfeat.common.tileentities;
 
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.ISpecialArmor;
 
 public class TileEntityPlayerDetector extends TileEntity {
 
+	private boolean flag = false;
+
 	public TileEntityPlayerDetector() {
-		int flag = 0;
+
 	}
 
 	@Override
 	public void updateEntity() {
-		if (worldObj.getClosestPlayer(xCoord, yCoord, zCoord, 17) != null) {
-			flag = 15;
-		}
-		
-	}
-	
-	
+		if (worldObj.isRemote) {
+			worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 0, 2);
 
-	
-	
+			if (worldObj.getClosestPlayer(xCoord, yCoord, zCoord, 17) != null) {
+				worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1,
+						3);
+			}
+
+		}
+	}
+
 }
