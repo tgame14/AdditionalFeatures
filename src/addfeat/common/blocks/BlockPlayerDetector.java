@@ -57,7 +57,7 @@ public class BlockPlayerDetector extends BlockContainer {
 	@Override
 	public int isProvidingWeakPower(IBlockAccess par1iBlockAccess, int par2,
 			int par3, int par4, int par5) {
-		if (getTextureName() == ModInfo.TEXTURE_LOCATION + ":"
+		if (getItemIconName() == ModInfo.TEXTURE_LOCATION + ":"
 				+ BlockInfo.BOMB_TEXTURE) {
 			return 15;
 		}
