@@ -35,5 +35,11 @@ public class BlockInfo {
 	public static final String BOMB__IDLE_TEXTURE = "bomb_idle";
 
 	public static final String BOMB_TE_KEY = "bombTileEntity";
+	
+	public static final String GARBAGE_UNLOCALIZED_NAME = "garbageCan";
+	public static final String GARBAGE_NAME = "Garbage Can";
+	
+	public static final String GARBAGE_TEXTURE = "garbageCan";
+	
 
 }

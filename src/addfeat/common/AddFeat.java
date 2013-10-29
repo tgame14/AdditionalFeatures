@@ -1,7 +1,10 @@
 package addfeat.common;
 
+import java.util.logging.Level;
+
 import net.minecraft.creativetab.CreativeTabs;
 import addfeat.common.blocks.Blocks;
+import addfeat.common.client.interfaces.GuiHandler;
 import addfeat.common.config.ConfigHandler;
 import addfeat.common.entities.Entities;
 import addfeat.common.items.Items;
@@ -51,12 +54,15 @@ public class AddFeat {
 		Blocks.registerTileEntities();
 		
 		Entities.init();
+		
+		new GuiHandler();
 
 	}
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		System.out.println("[" + ModInfo.NAME + "] loaded Correctly");
+		FMLLog.log(Level.INFO, "loaded Correctly {FORGEFORGEFOGE}");
 
 	}
 

@@ -21,7 +21,6 @@ public class BlockPlayerDetector extends BlockContainer {
 		super(id, Material.tnt);
 		setCreativeTab(AddFeat.AddFeatTab);
 		setHardness(2F);
-		setStepSound(Block.soundStoneFootstep);
 		setUnlocalizedName(BlockInfo.DETECTOR_UNLOCALIZED_NAME);
 		setStepSound(soundMetalFootstep);
 
@@ -44,7 +43,7 @@ public class BlockPlayerDetector extends BlockContainer {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public Icon getIcon(int side, int meta) {
-		return meta == 0 ? idleIcon : activeIcon;
+		return meta == 0 ? activeIcon : idleIcon;
 
 	}
 
