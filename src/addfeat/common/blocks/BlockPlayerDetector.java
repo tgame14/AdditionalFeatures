@@ -3,6 +3,7 @@ package addfeat.common.blocks;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
@@ -10,6 +11,7 @@ import net.minecraft.world.World;
 import addfeat.common.AddFeat;
 import addfeat.common.ModInfo;
 import addfeat.common.tileentities.TileEntityPlayerDetector;
+import cpw.mods.fml.common.network.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -51,11 +53,16 @@ public class BlockPlayerDetector extends BlockContainer {
 
 		return new TileEntityPlayerDetector();
 	}
+
 	
 	@Override
-	public int isProvidingWeakPower(IBlockAccess par1iBlockAccess, int par2,
-			int par3, int par4, int par5) {
-		return 
+	public boolean onBlockActivated(World world, int x, int y,
+			int z, EntityPlayer player, int par6, float par7,
+			float par8, float par9) {
+		if(!world.isRemote) {
+			FMLNetworkHandler.openGui(player, AddFeat.instance, 0, world, x, y, z);
+		}
+		return true;
 	}
 	
 	
