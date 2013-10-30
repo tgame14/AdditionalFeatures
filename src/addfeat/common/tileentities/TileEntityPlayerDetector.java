@@ -5,12 +5,16 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.ISpecialArmor;
 
 public class TileEntityPlayerDetector extends TileEntity implements IInventory {
 
 	private ItemStack[] items;
+	private boolean flag;
 
 	public TileEntityPlayerDetector() {
+
+		flag = false;
 		items = new ItemStack[3];
 	}
 
@@ -25,7 +29,6 @@ public class TileEntityPlayerDetector extends TileEntity implements IInventory {
 				worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1,
 						3);
 			}
-
 		}
 	}
 
@@ -63,10 +66,10 @@ public class TileEntityPlayerDetector extends TileEntity implements IInventory {
 	@Override
 	public void setInventorySlotContents(int i, ItemStack itemstack) {
 		items[i] = itemstack;
-		
-		if (itemstack != null && itemstack.stackSize > getInventoryStackLimit()) 
+
+		if (itemstack != null && itemstack.stackSize > getInventoryStackLimit())
 			itemstack.stackSize = getInventoryStackLimit();
-		
+
 		onInventoryChanged();
 
 	}

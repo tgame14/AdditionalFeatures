@@ -9,6 +9,7 @@ import addfeat.common.config.ConfigHandler;
 import addfeat.common.entities.Entities;
 import addfeat.common.items.Items;
 import addfeat.common.proxies.CommonProxy;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -62,7 +63,6 @@ public class AddFeat {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		System.out.println("[" + ModInfo.NAME + "] loaded Correctly");
-		FMLLog.log(Level.INFO, "loaded Correctly {FORGEFORGEFOGE}");
 
 	}
 
