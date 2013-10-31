@@ -24,7 +24,7 @@ public class GameModeCommand extends CommandBase implements ICommand {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
+
 	@Override
 	public int getRequiredPermissionLevel() {
 		return 2;
@@ -50,20 +50,26 @@ public class GameModeCommand extends CommandBase implements ICommand {
 		if (astring.length == 0) {
 			return;
 		}
-		private EnumGameType par1EnumGameType;
-		
-		else if(astring[0] == "0" || astring[0] == "s"){
-			icommandsender.sendChatToPlayer(ChatMessageComponent.createFromTranslationWithSubstitutions("Setting Gamemode To Survival"));
-			EntityPlayer.setGameType();
+		EnumGameType par1EnumGameType;
+
+		if (astring[0] == "0" || astring[0] == "s") {
+			icommandsender
+					.sendChatToPlayer(ChatMessageComponent
+							.createFromTranslationWithSubstitutions("Setting Gamemode To Survival"));
+			//EntityPlayer.setGameType();
 		}
-		
-		else if(astring[0] == "1" || astring[0] == "c"){
-			icommandsender.sendChatToPlayer(ChatMessageComponent.createFromTranslationWithSubstitutions("Setting Gamemode To Creative"));
+
+		else if (astring[0] == "1" || astring[0] == "c") {
+			icommandsender
+					.sendChatToPlayer(ChatMessageComponent
+							.createFromTranslationWithSubstitutions("Setting Gamemode To Creative"));
 		}
-		
-		else if(astring[0] == "2" || astring[0] == "a") {
-			icommandsender.sendChatToPlayer(ChatMessageComponent.createFromTranslationWithSubstitutions("Setting Gamemode To adventure"));
-			
+
+		else if (astring[0] == "2" || astring[0] == "a") {
+			icommandsender
+					.sendChatToPlayer(ChatMessageComponent
+							.createFromTranslationWithSubstitutions("Setting Gamemode To adventure"));
+
 		}
 	}
 

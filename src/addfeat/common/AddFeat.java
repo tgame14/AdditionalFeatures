@@ -3,7 +3,6 @@ package addfeat.common;
 import net.minecraft.creativetab.CreativeTabs;
 import addfeat.common.blocks.Blocks;
 import addfeat.common.client.interfaces.GuiHandler;
-import addfeat.common.commands.SampleCommand;
 import addfeat.common.config.ConfigHandler;
 import addfeat.common.entities.Entities;
 import addfeat.common.items.Items;
@@ -64,7 +63,7 @@ public class AddFeat {
 
 	@EventHandler
 	public void serverLoad(FMLServerStartingEvent event) {
-		CommandHandler.init();
+		
 	}
 
 }
