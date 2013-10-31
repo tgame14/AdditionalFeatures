@@ -41,5 +41,18 @@ public class BlockInfo {
 	
 	public static final String GARBAGE_TEXTURE = "garbageCan";
 	
+	
+	public static int FILLER_ID;
+	public static final String FILLER_KEY = "OceanFiller";
+	public static final int FILLER_DEFAULT = 2077;
+	
+	public static final String FILLER_UNLOCALIZED_NAME = "oceanFiller";
+	public static final String FILLER_NAME = "Ocean Filler";
+	
+	public static final String FILLER_TEXTURE = "oceanFiller";
+	
+	
+	
+		
 
 }
