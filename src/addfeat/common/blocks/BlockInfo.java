@@ -54,6 +54,17 @@ public class BlockInfo {
 	
 	public static final String FILLER_TE_KEY = "oceanFillerTileEntity";
 	
+	public static int WEATHER_ID;
+	public static final String WEATHER_KEY = "WeatherBox";
+	public static final int WEATHER_DEFAULT = 2078;
+	
+	public static final String WEATHER_UNLOCALIZED_NAME = "weatherBox";
+	public static final String WEATHER_NAME = "Weather Box";
+	
+	public static String WEATHER_TEXTURE = "weatherBox";
+	
+	public static final String WEATHER_TE_KEY = "weatherBoxTileEntity";
+	
 	
 	
 		

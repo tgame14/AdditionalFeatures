@@ -6,8 +6,8 @@ import addfeat.common.blocks.BlockInfo;
 
 public class TileEntityOceanFiller extends TileEntity {
 
-	private static final int SPREAD_TIME = 50;
-	private static final int SPREAD_LEVELS = 20;
+	private static final int SPREAD_TIME = 5;
+	private static final int SPREAD_LEVELS = 100;
 
 	private int timer;
 	private int level;
@@ -16,6 +16,7 @@ public class TileEntityOceanFiller extends TileEntity {
 		timer = SPREAD_TIME;
 		level = 0;
 	}
+	
 
 	public boolean isIdle() {
 		return timer < 0;
@@ -24,21 +25,23 @@ public class TileEntityOceanFiller extends TileEntity {
 
 	@Override
 	public void updateEntity() {
+		if (!worldObj.isRemote) {
+			if (timer == 0 && level < SPREAD_LEVELS) {
+				spread(xCoord + 1, yCoord, zCoord);
+				spread(xCoord - 1, yCoord, zCoord);
+				spread(xCoord, yCoord + 1, zCoord);
+				spread(xCoord, yCoord - 1, zCoord);
+				spread(xCoord, yCoord, zCoord + 1);
+				spread(xCoord, yCoord, zCoord - 1);
+				worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1,
+						3);
+			}
 
-		if (timer == 0 && level < SPREAD_LEVELS) {
-			spread(xCoord + 1, yCoord, zCoord);
-			spread(xCoord - 1, yCoord, zCoord);
-			spread(xCoord, yCoord + 1, zCoord);
-			spread(xCoord, yCoord - 1, zCoord);
-			spread(xCoord, yCoord, zCoord + 1);
-			spread(xCoord, yCoord, zCoord - 1);
-			worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1, 3);
+			else if (timer == SPREAD_TIME * (level - SPREAD_LEVELS)) {
+				// worldObj.setRainStrength(1.0F);
+			}
 		}
-		
-		else if (timer == SPREAD_TIME * (level - SPREAD_LEVELS)) {
-			worldObj.setRainStrength(1.0F);;
-		}
-		
+
 		timer--;
 	}
 
