@@ -17,7 +17,7 @@ public class TileEntityBomb extends TileEntity {
 		level = 0;
 	}
 	
-	public boolean isIdle() {
+	public boolean isBombIdle() {
 		return timer < 0;
 	}
 	

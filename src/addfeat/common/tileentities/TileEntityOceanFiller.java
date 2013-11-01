@@ -6,8 +6,8 @@ import addfeat.common.blocks.BlockInfo;
 
 public class TileEntityOceanFiller extends TileEntity {
 
-	private static final int SPREAD_TIME = 5;
-	private static final int SPREAD_LEVELS = 100;
+	private static final int SPREAD_TIME = 50;
+	private static final int SPREAD_LEVELS = 30;
 
 	private int timer;
 	private int level;
@@ -18,7 +18,7 @@ public class TileEntityOceanFiller extends TileEntity {
 	}
 	
 
-	public boolean isIdle() {
+	public boolean isOceanFillerIdle() {
 		return timer < 0;
 
 	}
@@ -38,7 +38,7 @@ public class TileEntityOceanFiller extends TileEntity {
 			}
 
 			else if (timer == SPREAD_TIME * (level - SPREAD_LEVELS)) {
-				// worldObj.setRainStrength(1.0F);
+				worldObj.setRainStrength(0.01F);
 			}
 		}
 
