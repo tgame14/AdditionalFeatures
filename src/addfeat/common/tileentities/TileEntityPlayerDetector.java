@@ -5,7 +5,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.ISpecialArmor;
 
 public class TileEntityPlayerDetector extends TileEntity implements IInventory {
 
@@ -20,7 +19,6 @@ public class TileEntityPlayerDetector extends TileEntity implements IInventory {
 
 	@Override
 	public void updateEntity() {
-		// if()
 		if (worldObj.isRemote) {
 			worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 0, 2);
 

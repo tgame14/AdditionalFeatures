@@ -44,13 +44,10 @@ public class AddFeat {
 	public void load(FMLInitializationEvent event) {
 		Items.addNames();
 		Blocks.addNames();
-
+		
 		Items.registerRecipes();
-
 		Blocks.registerTileEntities();
-
 		Entities.init();
-
 		new GuiHandler();
 
 	}
@@ -58,12 +55,12 @@ public class AddFeat {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		System.out.println("[" + ModInfo.NAME + "] loaded Correctly");
-
+		//add Version Checker later.
 	}
 
 	@EventHandler
 	public void serverLoad(FMLServerStartingEvent event) {
-		
+		//space for later (registering commands).
 	}
 
 }

@@ -18,6 +18,7 @@ public class BlockInfo {
 	public static int DETECTOR_ID;
 	public static final String DETECTOR_KEY = "Player Detector";
 	public static final int DETECTOR_DEFAULT = 2076;
+	public static final String DETECTOR_TE_KEY = "playerDetectorTileEntity";
 
 	public static final String DETECTOR_UNLOCALIZED_NAME = "playerDetector";
 	public static final String DETECTOR_NAME = "Player Detector";
@@ -50,6 +51,8 @@ public class BlockInfo {
 	public static final String FILLER_NAME = "Ocean Filler";
 	
 	public static final String FILLER_TEXTURE = "oceanFiller";
+	
+	public static final String FILLER_TE_KEY = "oceanFillerTileEntity";
 	
 	
 	
