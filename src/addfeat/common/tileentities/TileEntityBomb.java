@@ -66,6 +66,8 @@ public class TileEntityBomb extends TileEntity {
 		timer = compound.getShort("Timer");
 		level = compound.getByte("Level");
 	}
+
+	
 	
 
 }

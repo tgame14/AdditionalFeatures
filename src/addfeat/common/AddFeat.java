@@ -14,7 +14,6 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
 @Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION)
@@ -35,6 +34,7 @@ public class AddFeat {
 		ConfigHandler.init(event.getSuggestedConfigurationFile());
 		Items.init();
 		Blocks.init();
+		Blocks.registerTileEntities();
 
 		proxy.initSounds();
 		proxy.initRenderers();
@@ -44,9 +44,8 @@ public class AddFeat {
 	public void load(FMLInitializationEvent event) {
 		Items.addNames();
 		Blocks.addNames();
-		
+
 		Items.registerRecipes();
-		Blocks.registerTileEntities();
 		Entities.init();
 		new GuiHandler();
 
@@ -55,12 +54,7 @@ public class AddFeat {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		System.out.println("[" + ModInfo.NAME + "] loaded Correctly");
-		//add Version Checker later.
-	}
-
-	@EventHandler
-	public void serverLoad(FMLServerStartingEvent event) {
-		//space for later (registering commands).
+		// add Version Checker later (very later).
 	}
 
 }

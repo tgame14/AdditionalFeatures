@@ -26,6 +26,8 @@ public class ConfigHandler {
 				BlockInfo.DETECTOR_DEFAULT).getInt();
 		BlockInfo.BOMB_ID = config.getBlock(BlockInfo.BOMB_KEY,
 				BlockInfo.BOMB_DEFAULT).getInt();
+		BlockInfo.FILLER_ID = config.getBlock(BlockInfo.FILLER_KEY,
+				BlockInfo.FILLER_DEFAULT).getInt();
 
 		ItemInfo.SHARD_ID = config.getItem(ItemInfo.SHARD_KEY,
 				ItemInfo.SHARD_DEFAULT).getInt() - 256;
