@@ -10,6 +10,7 @@ import net.minecraft.world.World;
 import addfeat.common.AddFeat;
 import addfeat.common.ModInfo;
 import addfeat.common.tileentities.TileEntityPlayerDetector;
+import cpw.mods.fml.common.Mod.Metadata;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -52,11 +53,9 @@ public class BlockPlayerDetector extends BlockContainer {
 		return new TileEntityPlayerDetector();
 	}
 	
-	@Override
-	public int isProvidingWeakPower(IBlockAccess par1iBlockAccess, int par2,
-			int par3, int par4, int par5) {
-		return 0;
-	}
+
+	
+
 	
 	
 

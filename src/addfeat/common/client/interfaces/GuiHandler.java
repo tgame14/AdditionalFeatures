@@ -4,6 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import addfeat.common.AddFeat;
+import addfeat.common.tileentities.TileEntityCan;
 import addfeat.common.tileentities.TileEntityPlayerDetector;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
@@ -22,7 +23,7 @@ public class GuiHandler implements IGuiHandler {
 		case 0:
 			TileEntity te = world.getBlockTileEntity(x, y, z);
 			if(te != null && te instanceof TileEntityPlayerDetector) {
-				return new ContainerPlayerDetector(player.inventory, (TileEntityPlayerDetector)te);
+				return new ContainerCan(player.inventory, (TileEntityCan)te);
 			}
 			break;
 		}
@@ -35,8 +36,8 @@ public class GuiHandler implements IGuiHandler {
 		switch (ID) {
 		case 0:
 			TileEntity te = world.getBlockTileEntity(x, y, z);
-			if(te != null && te instanceof TileEntityPlayerDetector) {
-				return new GuiPlayerDetector(player.inventory, (TileEntityPlayerDetector)te);
+			if(te != null && te instanceof TileEntityCan) {
+				return new GuiPlayerDetector(player.inventory, (TileEntityCan)te);
 			}
 			break;
 		}

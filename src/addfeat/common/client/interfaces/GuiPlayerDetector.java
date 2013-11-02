@@ -7,6 +7,7 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
+import addfeat.common.tileentities.TileEntityCan;
 import addfeat.common.tileentities.TileEntityPlayerDetector;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -14,8 +15,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiPlayerDetector extends GuiContainer {
 
-	public GuiPlayerDetector(InventoryPlayer invPlayer, TileEntityPlayerDetector detector) {
-		super(new ContainerPlayerDetector(invPlayer, detector));
+	public GuiPlayerDetector(InventoryPlayer invPlayer, TileEntityCan te) {
+		super(new ContainerCan(invPlayer, te));
 		
 		xSize = 176;
 		ySize = 154;

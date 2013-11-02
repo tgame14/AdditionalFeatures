@@ -44,7 +44,8 @@ public class AddFeat {
 	public void load(FMLInitializationEvent event) {
 		Items.addNames();
 		Blocks.addNames();
-
+		
+		AddFurnaceRecipes.init();
 		Items.registerRecipes();
 		Entities.init();
 		new GuiHandler();

@@ -38,7 +38,7 @@ public class TileEntityOceanFiller extends TileEntity {
 			}
 
 			else if (timer == SPREAD_TIME * (level - SPREAD_LEVELS)) {
-				worldObj.setRainStrength(0.01F);
+				worldObj.setRainStrength(0.05F);
 			}
 		}
 
