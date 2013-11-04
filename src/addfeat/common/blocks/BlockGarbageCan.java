@@ -10,7 +10,6 @@ import net.minecraft.world.World;
 public class BlockGarbageCan extends BlockContainer{
 	public BlockGarbageCan(int id) {
 		super(id, Material.iron);
-		
 		setCreativeTab(AddFeat.AddFeatTab);
 		setHardness(2F);
 		setStepSound(soundStoneFootstep);

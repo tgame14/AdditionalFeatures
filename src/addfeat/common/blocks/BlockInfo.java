@@ -61,7 +61,8 @@ public class BlockInfo {
 	public static final String WEATHER_UNLOCALIZED_NAME = "weatherBox";
 	public static final String WEATHER_NAME = "Weather Box";
 	
-	public static String WEATHER_TEXTURE = "weatherBox";
+	public static String WEATHER_SUN_TEXTURE = "sunWeatherBox";
+	public static String WEATHER_RAIN_TEXTURE = "rainWeatherBox";
 	
 	public static final String WEATHER_TE_KEY = "weatherBoxTileEntity";
 	

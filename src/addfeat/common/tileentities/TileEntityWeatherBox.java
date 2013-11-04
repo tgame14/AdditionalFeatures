@@ -11,8 +11,12 @@ public class TileEntityWeatherBox extends TileEntity {
 	
 	@Override
 	public void updateEntity() {
-		// TODO Auto-generated method stub
-		super.updateEntity();
+		if(!worldObj.isRemote) {
+			worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 0, 3);
+			if(worldObj.isRaining())
+				worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1, 3);
+			
+		}
 	}
 	
 	

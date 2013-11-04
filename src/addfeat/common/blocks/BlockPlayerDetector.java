@@ -10,12 +10,11 @@ import net.minecraft.world.World;
 import addfeat.common.AddFeat;
 import addfeat.common.ModInfo;
 import addfeat.common.tileentities.TileEntityPlayerDetector;
-import cpw.mods.fml.common.Mod.Metadata;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockPlayerDetector extends BlockContainer {
-
+	private int data;
 
 	public BlockPlayerDetector(int id) {
 		super(id, Material.tnt);
@@ -46,6 +45,13 @@ public class BlockPlayerDetector extends BlockContainer {
 		return meta == 0 ? activeIcon : idleIcon;
 
 	}
+	
+	@Override
+	public int isProvidingWeakPower(IBlockAccess par1iBlockAccess, int par2,
+			int par3, int par4, int par5) {
+		return par1iBlockAccess.getBlockMetadata(par2, par3, par4) == 0 ? 15 : 0;
+	}
+	
 
 	@Override
 	public TileEntity createNewTileEntity(World world) {
