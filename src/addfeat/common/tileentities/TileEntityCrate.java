@@ -2,21 +2,24 @@ package addfeat.common.tileentities;
 
 import java.util.List;
 
+import addfeat.common.blocks.BlockInfo;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityMultiChest extends TileEntity implements IInventory {
+public class TileEntityCrate extends TileEntity implements IInventory {
 
 	private ItemStack[] items;
 	boolean isMultiblock;
-	List blockCount;
+	
 
-	public TileEntityMultiChest() {
+	public TileEntityCrate() {
 		items = new ItemStack[9];
+		isMultiblock = false;
 	}
-
+	
+	
 	@Override
 	public int getSizeInventory() {
 		return items.length;

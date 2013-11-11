@@ -7,17 +7,17 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import addfeat.common.AddFeat;
-import addfeat.common.tileentities.TileEntityMultiChest;
+import addfeat.common.tileentities.TileEntityCrate;
 import cpw.mods.fml.common.network.FMLNetworkHandler;
 
-public class BlockMultiChest extends BlockContainer {
+public class BlockCrate extends BlockContainer {
 
-	public BlockMultiChest(int id) {
+	public BlockCrate(int id) {
 		super(id, Material.iron);
 		setCreativeTab(AddFeat.AddFeatTab);
 		setHardness(2F);
 		setStepSound(Block.soundMetalFootstep);
-		setUnlocalizedName(BlockInfo.MULTI_UNLOCALIZED_NAME);
+		setUnlocalizedName(BlockInfo.CRATE_UNLOCALIZED_NAME);
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class BlockMultiChest extends BlockContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(World world) {
-		return new TileEntityMultiChest();
+		return new TileEntityCrate();
 	}
 
 }

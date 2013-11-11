@@ -54,16 +54,14 @@ public class BlockInfo {
 	public static String WEATHER_RAIN_TEXTURE = "rainWeatherBox";
 	public static final String WEATHER_TE_KEY = "weatherBoxTileEntity";
 	
-	public static int MULTI_ID;
-	public static final String MULTI_KEY = "MultiChestChunk";
-	public static final int MULTI_DEFAULT = 2079;
-	public static final String MULTI_UNLOCALIZED_NAME = "multiChestController";
-	public static final String MULTI_NAME = "Multi Chest Controller";
-	public static final String MULTI_TE_KEY = "MultiChestTileEntity";
+	public static int CRATE_ID;
+	public static final String CRATE_KEY = "Crate";
+	public static final int CRATE_DEFAULT = 2079;
+	public static final String CRATE_UNLOCALIZED_NAME = "CRATEChestController";
+	public static final String CRATE_NAME = "Crate";
+	public static final String CRATE_TE_KEY = "CrateTileEntity";
 	
-	public static int STRUCT_ID;
-	public static final String STRUCT_KEY = "StructureChest";
-	public static final String STRUCT_UNLOCALIZED_NAME = "StructureMultiChest";
+	
 	
 	
 	

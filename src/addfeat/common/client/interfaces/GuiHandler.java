@@ -5,7 +5,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import addfeat.common.AddFeat;
 import addfeat.common.tileentities.TileEntityCan;
-import addfeat.common.tileentities.TileEntityMultiChest;
+import addfeat.common.tileentities.TileEntityCrate;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
 
@@ -29,8 +29,8 @@ public class GuiHandler implements IGuiHandler {
 			
 		case 1:
 			TileEntity te2 = world.getBlockTileEntity(x, y, z);
-			if(te2 != null && te2 instanceof TileEntityMultiChest) {
-				return new ContainerMultiChest(player.inventory, (TileEntityMultiChest)te2);
+			if(te2 != null && te2 instanceof TileEntityCrate) {
+				return new ContainerCrate(player.inventory, (TileEntityCrate)te2);
 			}
 			break;
 		}
@@ -50,8 +50,8 @@ public class GuiHandler implements IGuiHandler {
 			
 		case 1:
 			TileEntity te2 = world.getBlockTileEntity(x, y, z);
-			if(te2 != null && te2 instanceof TileEntityMultiChest) {
-				return new GuiMultiChest(player.inventory, (TileEntityMultiChest)te2);
+			if(te2 != null && te2 instanceof TileEntityCrate) {
+				return new GuiCrate(player.inventory, (TileEntityCrate)te2);
 			}
 		}
 		return null;

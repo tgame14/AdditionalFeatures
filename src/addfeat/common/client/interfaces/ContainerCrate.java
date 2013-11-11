@@ -1,0 +1,46 @@
+package addfeat.common.client.interfaces;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
+import addfeat.common.tileentities.TileEntityCrate;
+
+public class ContainerCrate extends Container {
+
+	private TileEntityCrate temc;
+
+	public ContainerCrate(InventoryPlayer invPlayer,
+			TileEntityCrate temc) {
+		this.temc = temc;
+		
+		for (int x = 0; x < 9; x++) {
+			addSlotToContainer(new Slot(invPlayer, x, 8 + 18 * x, 130));
+		}
+		
+		for (int y = 0; y < 3; y++) {
+			for (int x = 0; x < 9; x++) {
+				addSlotToContainer(new Slot(invPlayer, x + y * 9 + 9, 8 + 18 * x, 72 + y * 18));
+			}
+		}
+		
+		for(int x = 0; x < 9; x++) {
+			addSlotToContainer(new Slot(temc, x, 8 + 18 * x, 17));
+		}
+		
+		
+		
+	}
+	
+	@Override
+	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2) {
+		return null;
+	}
+
+	@Override
+	public boolean canInteractWith(EntityPlayer entityplayer) {
+		return temc.isUseableByPlayer(entityplayer);
+	}
+
+}
