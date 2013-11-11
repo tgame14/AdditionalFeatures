@@ -31,6 +31,7 @@ public class ConfigHandler {
 				BlockInfo.FILLER_DEFAULT).getInt();
 		BlockInfo.WEATHER_ID = config.getBlock(BlockInfo.WEATHER_KEY,
 				BlockInfo.WEATHER_DEFAULT).getInt();
+		BlockInfo.MULTI_ID = config.getBlock(BlockInfo.MULTI_KEY, BlockInfo.MULTI_DEFAULT).getInt();
 
 		ItemInfo.SHARD_ID = config.getItem(ItemInfo.SHARD_KEY,
 				ItemInfo.SHARD_DEFAULT).getInt() - 256;

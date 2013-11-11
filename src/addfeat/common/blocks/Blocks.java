@@ -2,6 +2,7 @@ package addfeat.common.blocks;
 
 import net.minecraft.block.Block;
 import addfeat.common.tileentities.TileEntityBomb;
+import addfeat.common.tileentities.TileEntityMultiChest;
 import addfeat.common.tileentities.TileEntityOceanFiller;
 import addfeat.common.tileentities.TileEntityPlayerDetector;
 import addfeat.common.tileentities.TileEntityWeatherBox;
@@ -13,6 +14,7 @@ public class Blocks {
 	public static Block bomb;
 	public static Block oceanFiller;
 	public static Block weatherBox;
+	public static Block multiChest;
 
 	public static void init() {
 		playerDetector = new BlockPlayerDetector(BlockInfo.DETECTOR_ID);
@@ -26,6 +28,9 @@ public class Blocks {
 
 		weatherBox = new BlockWeatherBox(BlockInfo.WEATHER_ID);
 		GameRegistry.registerBlock(weatherBox, BlockInfo.WEATHER_KEY);
+
+		multiChest = new BlockMultiChest(BlockInfo.MULTI_ID);
+		GameRegistry.registerBlock(multiChest, BlockInfo.MULTI_KEY);
 	}
 
 	public static void addNames() {
@@ -33,6 +38,7 @@ public class Blocks {
 		LanguageRegistry.addName(bomb, BlockInfo.BOMB_NAME);
 		LanguageRegistry.addName(oceanFiller, BlockInfo.FILLER_NAME);
 		LanguageRegistry.addName(weatherBox, BlockInfo.WEATHER_NAME);
+		LanguageRegistry.addName(multiChest, BlockInfo.MULTI_NAME);
 	}
 
 	public static void registerTileEntities() {
@@ -47,6 +53,8 @@ public class Blocks {
 
 		GameRegistry.registerTileEntity(TileEntityWeatherBox.class,
 				BlockInfo.WEATHER_TE_KEY);
+		GameRegistry.registerTileEntity(TileEntityMultiChest.class,
+				BlockInfo.MULTI_TE_KEY);
 	}
 
 }

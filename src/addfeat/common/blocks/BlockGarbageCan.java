@@ -18,6 +18,8 @@ public class BlockGarbageCan extends BlockContainer{
 		
 	
 
+	
+	
 	@Override
 	public TileEntity createNewTileEntity(World world) {
 		return new TileEntityCan();
