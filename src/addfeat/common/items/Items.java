@@ -12,7 +12,7 @@ public class Items {
 	public static Item Core;
 
 	public static void init() {
-		Shard = new itemShard(ItemInfo.SHARD_ID);
+		Shard = new ItemShard(ItemInfo.SHARD_ID);
 
 		Core = new ItemCoreLapis(ItemInfo.CORE_ID);
 	}

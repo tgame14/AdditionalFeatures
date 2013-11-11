@@ -1,15 +1,21 @@
 package addfeat.common.tools;
 
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.item.Item;
 import net.minecraftforge.common.EnumHelper;
 
-public class tools {
+/*public class Tools {
+	
+	public final Item woodenShield;
+	
 	public static void init() {
-
-		EnumToolMaterial Catalyst = EnumHelper.addToolMaterial("Catalyst", 3,
-				1600, 10.0F, 4.0F, 15);
-		EnumToolMaterial woodenShield = EnumHelper.addToolMaterial(
-				"WoodenShield", 0, 212, 0, 0, 0);
+		woodenShield = new woodenShield(ToolInfo.SHIELD_ID);
+	}
+	
+	public static void addNames() {
+		LanguageRegistry.addName(woodenShield, ToolInfo.SHIELD_NAME);;
 	}
 
 }
+*/

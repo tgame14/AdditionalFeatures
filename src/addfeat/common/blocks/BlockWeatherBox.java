@@ -24,6 +24,9 @@ public class BlockWeatherBox extends BlockContainer {
 		setStepSound(soundMetalFootstep);
 
 	}
+	
+	
+	
 
 	
 	@SideOnly(Side.CLIENT)

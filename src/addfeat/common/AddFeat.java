@@ -20,6 +20,10 @@ import cpw.mods.fml.common.network.NetworkMod;
 @NetworkMod(channels = { ModInfo.CHANNEL }, clientSideRequired = true, serverSideRequired = false)
 public class AddFeat {
 
+	// tool materials
+	//public EnumToolMaterial woodenShield = EnumHelper.addToolMaterial("woodenShield", 0, 100, 0, 0, 0);
+	
+			
 	public static final CreativeTabs AddFeatTab = new AddFeatTab(
 			CreativeTabs.getNextID(), ModInfo.NAME);
 
@@ -35,6 +39,7 @@ public class AddFeat {
 		Items.init();
 		Blocks.init();
 		Blocks.registerTileEntities();
+		//Tools.init();
 
 		proxy.initSounds();
 		proxy.initRenderers();

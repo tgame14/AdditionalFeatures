@@ -1,6 +1,7 @@
 package addfeat.common.client.interfaces;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -30,5 +31,28 @@ public class GuiCrate extends GuiContainer {
 		Minecraft.getMinecraft().getTextureManager().bindTexture(texture);
 		drawTexturedModalRect(guiLeft + 1, guiTop + 1, 1, 1, xSize, ySize);
 	}
+	
+	@Override
+	protected void drawGuiContainerForegroundLayer(int par1, int par2) {
+		fontRenderer.drawString("Crate Box", 8, 6, 0x404040);
+	}
+	@Override
+	public void initGui() {
+		super.initGui();
+		
+		buttonList.clear();
+		
+		buttonList.add(new GuiButton(0, guiLeft + 101, guiTop + 42, 60, 20, "Lock"));
+	}
+	
+	@Override
+	protected void actionPerformed(GuiButton button) {
+		if(button.id == 0) {
+			System.out.println("Clicked");
+			
+		}
+	}
+	
+	
 
 }

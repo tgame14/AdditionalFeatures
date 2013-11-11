@@ -15,12 +15,12 @@ import addfeat.common.entities.EntitySpaceship;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class itemShard extends Item {
+public class ItemShard extends Item {
 
 	@SideOnly(Side.CLIENT)
 	private Icon chargedIcon;
 
-	public itemShard(int id) {
+	public ItemShard(int id) {
 		super(id);
 		setCreativeTab(AddFeat.AddFeatTab);
 		setMaxStackSize(1);
