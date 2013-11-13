@@ -11,8 +11,8 @@ public class ConfigHandler {
 
 	public static void init(File file) {
 		Configuration config = new Configuration(file);
-		
-		//debug for Development, will be removed for release.
+
+		// debug for Development, will be removed for release.
 		if (file.canRead()) {
 			System.out.println("[" + ModInfo.NAME
 					+ "] Config Already Exists, Reading");
@@ -31,7 +31,11 @@ public class ConfigHandler {
 				BlockInfo.FILLER_DEFAULT).getInt();
 		BlockInfo.WEATHER_ID = config.getBlock(BlockInfo.WEATHER_KEY,
 				BlockInfo.WEATHER_DEFAULT).getInt();
-		BlockInfo.CRATE_ID = config.getBlock(BlockInfo.CRATE_KEY, BlockInfo.CRATE_DEFAULT).getInt();
+		BlockInfo.CRATE_ID = config.getBlock(BlockInfo.CRATE_KEY,
+				BlockInfo.CRATE_DEFAULT).getInt();
+
+		BlockInfo.LIQUID_ME_ID = config.getBlock(BlockInfo.LIQUID_ME_KEY,
+				BlockInfo.LIQUID_ME_DEFAULT).getInt();
 
 		ItemInfo.SHARD_ID = config.getItem(ItemInfo.SHARD_KEY,
 				ItemInfo.SHARD_DEFAULT).getInt() - 256;

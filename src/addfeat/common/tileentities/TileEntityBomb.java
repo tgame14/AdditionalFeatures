@@ -34,7 +34,7 @@ public class TileEntityBomb extends TileEntity {
 				worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1, 3);
 			}
 			else if (timer == SPREAD_TIME * (level - SPREAD_LEVELS)) {
-				//worldObj.createExplosion(null, xCoord + 0.5, yCoord + 0.5, zCoord + 0.5, 4, true);
+				worldObj.createExplosion(null, xCoord + 0.5, yCoord + 0.5, zCoord + 0.5, 4, true);
 			}
 			
 			timer--;

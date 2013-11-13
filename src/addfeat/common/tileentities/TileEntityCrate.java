@@ -13,12 +13,14 @@ public class TileEntityCrate extends TileEntity implements IInventory {
 	private ItemStack[] items;
 	private boolean isMultiblock;
 	private int count;
+	private short timer;
 	
 
 	public TileEntityCrate() {
 		items = new ItemStack[9];
 		isMultiblock = false;
-		count = 0; 
+		count = 0;
+		timer = 10;
 	}
 	
 	
@@ -34,9 +36,10 @@ public class TileEntityCrate extends TileEntity implements IInventory {
 	@Override
 	public void updateEntity() {
 		if(!worldObj.isRemote) {
-			if(BlockCrate.isFlag()) {
+			if(timer == 0 && BlockCrate.isFlag()) {
 				incrCount();
 			}
+			timer--;
 		}
 	}
 	
@@ -155,6 +158,19 @@ public class TileEntityCrate extends TileEntity implements IInventory {
 				setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(item));
 			}
 		}
+	}
+
+
+	public void receiveButtonEvent(byte buttonId) {
+		switch(buttonId) {
+		
+		case 0:
+			//button functionality
+			
+			
+			break;
+		}
+		
 	}
 
 }

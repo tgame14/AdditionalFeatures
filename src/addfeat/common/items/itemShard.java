@@ -11,7 +11,6 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import addfeat.common.AddFeat;
 import addfeat.common.ModInfo;
-import addfeat.common.entities.EntitySpaceship;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -88,27 +87,6 @@ public class ItemShard extends Item {
 		return par1dmg >= 10;
 	}
 
-	@Override
-	public boolean onItemUseFirst(ItemStack stack, EntityPlayer player,
-			World world, int x, int y, int z, int side, float hitX, float hitY,
-			float hitZ) {
-		if(world.isRemote && player.isSneaking()) {
-			EntitySpaceship ship = new EntitySpaceship(world);
-			
-			ship.posX = x + 0.5;
-			ship.posY = y + 1.5;
-			ship.posZ = z + 0.5;
-			
-			
-			world.spawnEntityInWorld(ship);
-			
-			return true;
-		}
-		else {
-			return false;
-		}
-		
-
-	}
+	
 
 }

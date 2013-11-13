@@ -62,6 +62,14 @@ public class BlockInfo {
 	public static final String CRATE_TE_KEY = "CrateTileEntity";
 	
 	
+	public static int LIQUID_ME_ID;
+	public static final int LIQUID_ME_DEFAULT = 2080;
+	public static final String LIQUID_ME_KEY = "LiquidME";
+	public static final String LIQUID_ME_NAME = "Liquid ME";
+	public static final String LIQUID_ME_UNLOCALIZED_NAME = "liquidME";
+	public static final String LIQUID_ME_TEXTURE = "LiquidMEStill";
+	
+	
 	
 	
 	

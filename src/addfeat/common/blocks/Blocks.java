@@ -1,6 +1,11 @@
 package addfeat.common.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFlowing;
+import net.minecraft.block.BlockStationary;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import addfeat.common.items.Items;
 import addfeat.common.tileentities.TileEntityBomb;
 import addfeat.common.tileentities.TileEntityCrate;
 import addfeat.common.tileentities.TileEntityOceanFiller;
@@ -14,7 +19,9 @@ public class Blocks {
 	public static Block bomb;
 	public static Block oceanFiller;
 	public static Block weatherBox;
-	public static Block multiChest;
+	public static Block crate;
+	public static Block fluidME;
+	
 
 	public static void init() {
 		playerDetector = new BlockPlayerDetector(BlockInfo.DETECTOR_ID);
@@ -29,8 +36,12 @@ public class Blocks {
 		weatherBox = new BlockWeatherBox(BlockInfo.WEATHER_ID);
 		GameRegistry.registerBlock(weatherBox, BlockInfo.WEATHER_KEY);
 
-		multiChest = new BlockCrate(BlockInfo.CRATE_ID);
-		GameRegistry.registerBlock(multiChest, BlockInfo.CRATE_KEY);
+		crate = new BlockCrate(BlockInfo.CRATE_ID);
+		GameRegistry.registerBlock(crate, BlockInfo.CRATE_KEY);
+		
+		fluidME = new BlockFluidME(BlockInfo.LIQUID_ME_ID);
+		GameRegistry.registerBlock(fluidME, BlockInfo.LIQUID_ME_KEY);
+		
 	}
 
 	public static void addNames() {
@@ -38,7 +49,8 @@ public class Blocks {
 		LanguageRegistry.addName(bomb, BlockInfo.BOMB_NAME);
 		LanguageRegistry.addName(oceanFiller, BlockInfo.FILLER_NAME);
 		LanguageRegistry.addName(weatherBox, BlockInfo.WEATHER_NAME);
-		LanguageRegistry.addName(multiChest, BlockInfo.CRATE_NAME);
+		LanguageRegistry.addName(crate, BlockInfo.CRATE_NAME);
+		LanguageRegistry.addName(fluidME, BlockInfo.LIQUID_ME_NAME);
 	}
 
 	public static void registerTileEntities() {
@@ -57,4 +69,14 @@ public class Blocks {
 				BlockInfo.CRATE_TE_KEY);
 	}
 
+	public static void registerRecipes() {
+
+		GameRegistry.addRecipe(new ItemStack(playerDetector, 1, 0), "XYX",
+				"YZY", "XYX", 'X', Item.glowstone, 'Y', Block.blockRedstone,
+				'Z', new ItemStack(Items.Core, 1, 0));
+
+		GameRegistry.addRecipe(new ItemStack(oceanFiller, 1, 0), "XYX", "YZY",
+				"XYX", 'X', Item.bucketWater, 'Z', new ItemStack(Items.Core, 1,
+						2), 'Y', Item.poisonousPotato);
+	}
 }

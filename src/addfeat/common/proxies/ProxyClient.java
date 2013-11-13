@@ -1,7 +1,5 @@
 package addfeat.common.proxies;
 
-import addfeat.common.entities.EntitySpaceship;
-import cpw.mods.fml.client.registry.RenderingRegistry;
 
 
 public class ProxyClient extends CommonProxy {

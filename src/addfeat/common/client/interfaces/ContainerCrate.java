@@ -9,11 +9,11 @@ import addfeat.common.tileentities.TileEntityCrate;
 
 public class ContainerCrate extends Container {
 
-	private TileEntityCrate temc;
+	private TileEntityCrate crate;
 
 	public ContainerCrate(InventoryPlayer invPlayer,
-			TileEntityCrate temc) {
-		this.temc = temc;
+			TileEntityCrate crate) {
+		this.crate = crate;
 		
 		for (int x = 0; x < 9; x++) {
 			addSlotToContainer(new Slot(invPlayer, x, 8 + 18 * x, 130));
@@ -26,7 +26,7 @@ public class ContainerCrate extends Container {
 		}
 		
 		for(int x = 0; x < 9; x++) {
-			addSlotToContainer(new Slot(temc, x, 8 + 18 * x, 17));
+			addSlotToContainer(new Slot(crate, x, 8 + 18 * x, 17));
 		}
 		
 		
@@ -40,7 +40,11 @@ public class ContainerCrate extends Container {
 
 	@Override
 	public boolean canInteractWith(EntityPlayer entityplayer) {
-		return temc.isUseableByPlayer(entityplayer);
+		return crate.isUseableByPlayer(entityplayer);
+	}
+	
+	public TileEntityCrate getCrate() {
+		return crate;
 	}
 
 }
