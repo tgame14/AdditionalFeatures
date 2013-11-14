@@ -31,8 +31,9 @@ public class BlockFluidME extends BlockFluidClassic {
 		setCreativeTab(AddFeat.AddFeatTab);
 		setUnlocalizedName(BlockInfo.LIQUID_ME_UNLOCALIZED_NAME);
 		setHardness(1000F);
-
+		setTickRandomly(true);
 	}
+	
 
 	@SideOnly(Side.CLIENT)
 	@Override
@@ -50,23 +51,22 @@ public class BlockFluidME extends BlockFluidClassic {
 
 	}
 
-	// all "log" is just a debug test for me.
+	
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random rand) {
 		super.updateTick(world, x, y, z, rand);
 		if (!world.isRemote) {
-			System.out.println("log3");
 			for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
-				if (world.getBlockTileEntity(dir.offsetX, dir.offsetY, dir.offsetZ) != null) {
-					System.out.println("log1");
-					if(world.getBlockTileEntity(dir.offsetX, dir.offsetY, dir.offsetZ) instanceof IGridTileEntity) {
-						System.out.println("log2");
-						world.setBlock(dir.offsetX, dir.offsetY, dir.offsetZ, BlockInfo.LIQUID_ME_ID, 0, 3);
+				if (world.getBlockTileEntity(x + dir.offsetX, y + dir.offsetY,
+						z + dir.offsetZ) != null) {
+					if (world.getBlockTileEntity(x + dir.offsetX, y
+							+ dir.offsetY, z + dir.offsetZ) instanceof IGridTileEntity) {
+						world.setBlock(x + dir.offsetX, y + dir.offsetY, z
+								+ dir.offsetZ, BlockInfo.LIQUID_ME_ID, 0, 3);
 					}
-					
+
 				}
 
-				
 			}
 		}
 
