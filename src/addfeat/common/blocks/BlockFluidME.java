@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
@@ -30,7 +31,6 @@ public class BlockFluidME extends BlockFluidClassic {
 		setCreativeTab(AddFeat.AddFeatTab);
 		setUnlocalizedName(BlockInfo.LIQUID_ME_UNLOCALIZED_NAME);
 		setHardness(1000F);
-		setTickRandomly(true);
 
 	}
 
@@ -50,18 +50,27 @@ public class BlockFluidME extends BlockFluidClassic {
 
 	}
 
+	// all "log" is just a debug test for me.
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random rand) {
 		super.updateTick(world, x, y, z, rand);
 		if (!world.isRemote) {
+			System.out.println("log3");
 			for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
-				if(world.getBlockTileEntity(dir.offsetX, dir.offsetY, dir.offsetZ) instanceof IGridTileEntity)
-					world.setBlock(dir.offsetX, dir.offsetY, dir.offsetZ, BlockInfo.LIQUID_ME_ID);
+				if (world.getBlockTileEntity(dir.offsetX, dir.offsetY, dir.offsetZ) != null) {
+					System.out.println("log1");
+					if(world.getBlockTileEntity(dir.offsetX, dir.offsetY, dir.offsetZ) instanceof IGridTileEntity) {
+						System.out.println("log2");
+						world.setBlock(dir.offsetX, dir.offsetY, dir.offsetZ, BlockInfo.LIQUID_ME_ID, 0, 3);
+					}
+					
+				}
+
+				
 			}
 		}
 
 	}
-
 
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z,
