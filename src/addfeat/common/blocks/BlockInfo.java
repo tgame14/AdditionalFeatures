@@ -67,7 +67,8 @@ public class BlockInfo {
 	public static final String LIQUID_ME_KEY = "LiquidME";
 	public static final String LIQUID_ME_NAME = "Liquid ME";
 	public static final String LIQUID_ME_UNLOCALIZED_NAME = "liquidME";
-	public static final String LIQUID_ME_TEXTURE = "LiquidMEStill";
+	public static final String LIQUID_STILL_TEXTURE = "LiquidMEStill";
+	public static final String LIQUID_FLOW_TEXTURE = "LiquidMEFlowing";
 	
 	
 	

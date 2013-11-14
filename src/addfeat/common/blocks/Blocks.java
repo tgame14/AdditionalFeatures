@@ -5,6 +5,9 @@ import net.minecraft.block.BlockFlowing;
 import net.minecraft.block.BlockStationary;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.event.ForgeSubscribe;
+import addfeat.common.fluids.Fluids;
 import addfeat.common.items.Items;
 import addfeat.common.tileentities.TileEntityBomb;
 import addfeat.common.tileentities.TileEntityCrate;
@@ -79,4 +82,6 @@ public class Blocks {
 				"XYX", 'X', Item.bucketWater, 'Z', new ItemStack(Items.Core, 1,
 						2), 'Y', Item.poisonousPotato);
 	}
+	
+	
 }

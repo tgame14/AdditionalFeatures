@@ -1,6 +1,9 @@
 package addfeat.common;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.event.ForgeSubscribe;
+import addfeat.common.blocks.BlockFluidME;
 import addfeat.common.blocks.Blocks;
 import addfeat.common.client.interfaces.GuiHandler;
 import addfeat.common.config.ConfigHandler;
@@ -35,7 +38,8 @@ public class AddFeat {
 	public void preInit(FMLPreInitializationEvent event) {
 		ConfigHandler.init(event.getSuggestedConfigurationFile());
 		
-		Fluids.init();
+		Fluids.registerFluids();
+		Fluids.initFluidProperties();
 		Items.init();
 		Blocks.init();
 		Blocks.registerTileEntities();
@@ -44,6 +48,8 @@ public class AddFeat {
 		proxy.initSounds();
 		proxy.initRenderers();
 	}
+	
+	
 
 	@EventHandler
 	public void load(FMLInitializationEvent event) {
@@ -59,6 +65,14 @@ public class AddFeat {
 		new GuiHandler();
 
 	}
+	
+	
+	@ForgeSubscribe
+	public void postStitch(TextureStitchEvent.Post event) {
+		Fluids.fluidME.setIcons(Blocks.fluidME.getBlockTextureFromSide(0), Blocks.fluidME.getBlockTextureFromSide(1));
+		
+	}
+	
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
