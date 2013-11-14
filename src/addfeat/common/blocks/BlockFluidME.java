@@ -2,6 +2,7 @@ package addfeat.common.blocks;
 
 import java.util.Random;
 
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -14,11 +15,15 @@ import net.minecraftforge.fluids.BlockFluidClassic;
 import addfeat.common.AddFeat;
 import addfeat.common.ModInfo;
 import addfeat.common.fluids.Fluids;
+import addfeat.common.tileentities.TileEntityCrate;
+import addfeat.common.tileentities.TileEntityLiquidME;
+import appeng.api.WorldCoord;
 import appeng.api.me.tiles.IGridTileEntity;
+import appeng.api.me.util.IGridInterface;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockFluidME extends BlockFluidClassic {
+public class BlockFluidME extends BlockFluidClassic implements ITileEntityProvider {
 
 	@SideOnly(Side.CLIENT)
 	protected Icon stillIcon;
@@ -31,7 +36,12 @@ public class BlockFluidME extends BlockFluidClassic {
 		setCreativeTab(AddFeat.AddFeatTab);
 		setUnlocalizedName(BlockInfo.LIQUID_ME_UNLOCALIZED_NAME);
 		setHardness(1000F);
-		setTickRandomly(true);
+		
+	}
+	
+	@Override
+	public int tickRate(World world) {
+		return  10000;
 	}
 	
 
@@ -83,7 +93,14 @@ public class BlockFluidME extends BlockFluidClassic {
 						05, 200));
 			}
 		}
-
 	}
+
+	@Override
+	public TileEntity createNewTileEntity(World world) {
+		return new TileEntityLiquidME();
+	}
+	
+	
+	
 
 }
