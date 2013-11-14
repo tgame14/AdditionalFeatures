@@ -1,12 +1,14 @@
 package addfeat.common.blocks;
 
+import java.util.Random;
+
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import addfeat.common.AddFeat;
 import addfeat.common.ModInfo;
@@ -22,15 +24,14 @@ public class BlockFluidME extends BlockFluidClassic {
 	@SideOnly(Side.CLIENT)
 	protected Icon flowingIcon;
 
-	private int timer;
-
 	public BlockFluidME(int id) {
 		super(id, Fluids.fluidME, Fluids.materialME);
 
 		setCreativeTab(AddFeat.AddFeatTab);
 		setUnlocalizedName(BlockInfo.LIQUID_ME_UNLOCALIZED_NAME);
 		setHardness(1000F);
-		this.timer = 100;
+		setTickRandomly(true);
+
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -50,26 +51,17 @@ public class BlockFluidME extends BlockFluidClassic {
 	}
 
 	@Override
-	public void onNeighborTileChange(World world, int x, int y, int z,
-			int tileX, int tileY, int tileZ) {
-		super.onNeighborTileChange(world, x, y, z, tileX, tileY, tileZ);
-
+	public void updateTick(World world, int x, int y, int z, Random rand) {
+		super.updateTick(world, x, y, z, rand);
 		if (!world.isRemote) {
-			if (world.getBlockTileEntity(tileX, tileY, tileZ) instanceof IGridTileEntity)
-				meltBlock(tileX, tileY, tileZ, world);
+			for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
+				if(world.getBlockTileEntity(dir.offsetX, dir.offsetY, dir.offsetZ) instanceof IGridTileEntity)
+					world.setBlock(dir.offsetX, dir.offsetY, dir.offsetZ, BlockInfo.LIQUID_ME_ID);
+			}
 		}
 
 	}
 
-	private void meltBlock(int x, int y, int z, World world) {
-
-		world.setBlock(x, y, z, BlockInfo.LIQUID_ME_ID);
-
-	}
-
-	private TileEntity initializeTE(TileEntity te, int x, int y, int z) {
-		return te.worldObj.getBlockTileEntity(x, y, z);
-	}
 
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z,
