@@ -3,7 +3,6 @@ package addfeat.common;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.event.ForgeSubscribe;
-import addfeat.common.blocks.BlockFluidME;
 import addfeat.common.blocks.Blocks;
 import addfeat.common.client.interfaces.GuiHandler;
 import addfeat.common.config.ConfigHandler;
@@ -23,10 +22,9 @@ import cpw.mods.fml.common.network.NetworkMod;
 @Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION)
 @NetworkMod(channels = { ModInfo.CHANNEL }, clientSideRequired = true, serverSideRequired = false)
 public class AddFeat {
-			
+
 	public static final CreativeTabs AddFeatTab = new AddFeatTab(
 			CreativeTabs.getNextID(), ModInfo.NAME);
-	
 
 	@Instance(ModInfo.ID)
 	public static AddFeat instance;
@@ -37,27 +35,23 @@ public class AddFeat {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		ConfigHandler.init(event.getSuggestedConfigurationFile());
-		
+
 		Fluids.registerFluids();
 		Fluids.initFluidProperties();
 		Items.init();
 		Blocks.init();
 		Blocks.registerTileEntities();
-		
 
 		proxy.initSounds();
 		proxy.initRenderers();
 	}
-	
-	
 
 	@EventHandler
 	public void load(FMLInitializationEvent event) {
-		
-		
+
 		Items.addNames();
 		Blocks.addNames();
-		
+
 		AddFurnaceRecipes.init();
 		Items.registerRecipes();
 		Blocks.registerRecipes();
@@ -65,19 +59,18 @@ public class AddFeat {
 		new GuiHandler();
 
 	}
-	
-	
+
 	@ForgeSubscribe
 	public void postStitch(TextureStitchEvent.Post event) {
-		Fluids.fluidME.setIcons(Blocks.fluidME.getBlockTextureFromSide(0), Blocks.fluidME.getBlockTextureFromSide(1));
-		
+		Fluids.fluidME.setIcons(Blocks.fluidME.getBlockTextureFromSide(0),
+				Blocks.fluidME.getBlockTextureFromSide(1));
+
 	}
-	
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		System.out.println("[" + ModInfo.NAME + "] loaded Correctly");
-		
+
 	}
 
 }
