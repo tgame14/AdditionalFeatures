@@ -15,15 +15,13 @@ import net.minecraftforge.fluids.BlockFluidClassic;
 import addfeat.common.AddFeat;
 import addfeat.common.ModInfo;
 import addfeat.common.fluids.Fluids;
-import addfeat.common.tileentities.TileEntityCrate;
 import addfeat.common.tileentities.TileEntityLiquidME;
-import appeng.api.WorldCoord;
 import appeng.api.me.tiles.IGridTileEntity;
-import appeng.api.me.util.IGridInterface;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockFluidME extends BlockFluidClassic implements ITileEntityProvider {
+public class BlockFluidME extends BlockFluidClassic implements
+		ITileEntityProvider {
 
 	@SideOnly(Side.CLIENT)
 	protected Icon stillIcon;
@@ -36,14 +34,13 @@ public class BlockFluidME extends BlockFluidClassic implements ITileEntityProvid
 		setCreativeTab(AddFeat.AddFeatTab);
 		setUnlocalizedName(BlockInfo.LIQUID_ME_UNLOCALIZED_NAME);
 		setHardness(1000F);
-		
+
 	}
-	
+
 	@Override
 	public int tickRate(World world) {
-		return  10000;
+		return 4000;
 	}
-	
 
 	@SideOnly(Side.CLIENT)
 	@Override
@@ -61,7 +58,6 @@ public class BlockFluidME extends BlockFluidClassic implements ITileEntityProvid
 
 	}
 
-	
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random rand) {
 		super.updateTick(world, x, y, z, rand);
@@ -71,8 +67,10 @@ public class BlockFluidME extends BlockFluidClassic implements ITileEntityProvid
 						z + dir.offsetZ) != null) {
 					if (world.getBlockTileEntity(x + dir.offsetX, y
 							+ dir.offsetY, z + dir.offsetZ) instanceof IGridTileEntity) {
-						world.setBlock(x + dir.offsetX, y + dir.offsetY, z
-								+ dir.offsetZ, BlockInfo.LIQUID_ME_ID, 0, 3);
+						if (!(world.getBlockTileEntity(x + dir.offsetX, y
+								+ dir.offsetY, z + dir.offsetZ) instanceof TileEntityLiquidME))
+							world.setBlock(x + dir.offsetX, y + dir.offsetY, z
+									+ dir.offsetZ, BlockInfo.LIQUID_ME_ID, 0, 3);
 					}
 
 				}
@@ -99,8 +97,5 @@ public class BlockFluidME extends BlockFluidClassic implements ITileEntityProvid
 	public TileEntity createNewTileEntity(World world) {
 		return new TileEntityLiquidME();
 	}
-	
-	
-	
 
 }
