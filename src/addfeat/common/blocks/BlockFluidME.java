@@ -28,6 +28,8 @@ public class BlockFluidME extends BlockFluidClassic implements
 	@SideOnly(Side.CLIENT)
 	protected Icon flowingIcon;
 
+	private boolean flag;
+
 	public BlockFluidME(int id) {
 		super(id, Fluids.fluidME, Fluids.materialME);
 
@@ -35,6 +37,7 @@ public class BlockFluidME extends BlockFluidClassic implements
 		setUnlocalizedName(BlockInfo.LIQUID_ME_UNLOCALIZED_NAME);
 		setHardness(1000F);
 
+		this.flag = false;
 	}
 
 	@Override
@@ -55,28 +58,6 @@ public class BlockFluidME extends BlockFluidClassic implements
 				+ BlockInfo.LIQUID_STILL_TEXTURE);
 		flowingIcon = iconRegister.registerIcon(ModInfo.TEXTURE_LOCATION + ":"
 				+ BlockInfo.LIQUID_FLOW_TEXTURE);
-
-	}
-
-	@Override
-	public void updateTick(World world, int x, int y, int z, Random rand) {
-		super.updateTick(world, x, y, z, rand);
-		if (!world.isRemote) {
-			for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
-				if (world.getBlockTileEntity(x + dir.offsetX, y + dir.offsetY,
-						z + dir.offsetZ) != null) {
-					if (world.getBlockTileEntity(x + dir.offsetX, y
-							+ dir.offsetY, z + dir.offsetZ) instanceof IGridTileEntity) {
-						if (!(world.getBlockTileEntity(x + dir.offsetX, y
-								+ dir.offsetY, z + dir.offsetZ) instanceof TileEntityLiquidME))
-							world.setBlock(x + dir.offsetX, y + dir.offsetY, z
-									+ dir.offsetZ, BlockInfo.LIQUID_ME_ID, 0, 3);
-					}
-
-				}
-
-			}
-		}
 
 	}
 
