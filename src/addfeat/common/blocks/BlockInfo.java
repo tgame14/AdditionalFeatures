@@ -79,6 +79,13 @@ public class BlockInfo {
 	public static final String JELLO_UNLOCALIZED_NAME = "jelloBrick";
 	public static final String JELLO_TEXTURE = "jelloBrick";
 	
+	public static int EXHAUST_ID;
+	public static final int EXHAUST_DEFAULT = 2082;
+	public static final String EXHAUST_KEY = "MEExhaust";
+	public static final String EXHAUST_NAME = "ME Heat Exhaust";
+	public static final String EXHAUST_UNLOCALIZED_NAME = "exhaustME";
+	public static final String[] EXHAUST_TEXTURES = {"exhaustTop", "exhaustSide", "exhaustBot"};
+	
 	
 	
 	

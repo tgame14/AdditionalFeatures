@@ -41,6 +41,7 @@ public class ConfigHandler {
 				BlockInfo.LIQUID_ME_DEFAULT).getInt();
 		BlockInfo.JELLO_ID = config.getBlock(BlockInfo.JELLO_KEY,
 				BlockInfo.JELLO_DEFAULT).getInt();
+		BlockInfo.EXHAUST_ID = config.getBlock(BlockInfo.EXHAUST_KEY, BlockInfo.EXHAUST_DEFAULT).getInt();
 
 		// Config Registry for Disabling and Enabling Features
 		ConfigInfo.FURNACE_RECIPES = config.get(ConfigInfo.FEATURE_KEY,

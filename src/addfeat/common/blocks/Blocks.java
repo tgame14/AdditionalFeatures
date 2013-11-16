@@ -23,6 +23,7 @@ public class Blocks {
 	public static Block crate;
 	public static Block fluidME;
 	public static Block jelloBrick;
+	public static Block exhaustME;
 
 	public static void init() {
 		playerDetector = new BlockPlayerDetector(BlockInfo.DETECTOR_ID);
@@ -47,6 +48,9 @@ public class Blocks {
 
 		jelloBrick = new BlockJelloBrick(BlockInfo.JELLO_ID);
 		GameRegistry.registerBlock(jelloBrick, BlockInfo.JELLO_KEY);
+		
+		exhaustME = new BlockExhaustME(BlockInfo.EXHAUST_ID);
+		GameRegistry.registerBlock(exhaustME, BlockInfo.EXHAUST_KEY);
 
 	}
 
@@ -61,6 +65,7 @@ public class Blocks {
 			LanguageRegistry.addName(fluidME, BlockInfo.LIQUID_ME_NAME);
 
 		LanguageRegistry.addName(jelloBrick, BlockInfo.JELLO_NAME);
+		LanguageRegistry.addName(exhaustME, BlockInfo.EXHAUST_NAME);
 	}
 
 	public static void registerTileEntities() {

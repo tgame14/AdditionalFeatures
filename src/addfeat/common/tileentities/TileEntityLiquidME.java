@@ -76,7 +76,7 @@ public class TileEntityLiquidME extends TileEntity implements IGridTileEntity {
 
 	@Override
 	public WorldCoord getLocation() {
-		return new WorldCoord(this.xCoord, this.yCoord, this.zCoord);
+		return new WorldCoord(xCoord, yCoord, zCoord);
 	}
 
 	@Override
