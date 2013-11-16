@@ -1,16 +1,12 @@
 package addfeat.common.blocks;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFlowing;
-import net.minecraft.block.BlockStationary;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.event.ForgeSubscribe;
-import addfeat.common.fluids.Fluids;
 import addfeat.common.items.Items;
 import addfeat.common.tileentities.TileEntityBomb;
 import addfeat.common.tileentities.TileEntityCrate;
+import addfeat.common.tileentities.TileEntityLiquidME;
 import addfeat.common.tileentities.TileEntityOceanFiller;
 import addfeat.common.tileentities.TileEntityPlayerDetector;
 import addfeat.common.tileentities.TileEntityWeatherBox;
@@ -24,6 +20,7 @@ public class Blocks {
 	public static Block weatherBox;
 	public static Block crate;
 	public static Block fluidME;
+	public static Block jelloBrick;
 	
 
 	public static void init() {
@@ -45,6 +42,9 @@ public class Blocks {
 		fluidME = new BlockFluidME(BlockInfo.LIQUID_ME_ID);
 		GameRegistry.registerBlock(fluidME, BlockInfo.LIQUID_ME_KEY);
 		
+		jelloBrick = new BlockJelloBrick(BlockInfo.JELLO_ID);
+		GameRegistry.registerBlock(jelloBrick, BlockInfo.JELLO_KEY);
+		
 	}
 
 	public static void addNames() {
@@ -54,6 +54,7 @@ public class Blocks {
 		LanguageRegistry.addName(weatherBox, BlockInfo.WEATHER_NAME);
 		LanguageRegistry.addName(crate, BlockInfo.CRATE_NAME);
 		LanguageRegistry.addName(fluidME, BlockInfo.LIQUID_ME_NAME);
+		LanguageRegistry.addName(jelloBrick, BlockInfo.JELLO_NAME);
 	}
 
 	public static void registerTileEntities() {
@@ -70,6 +71,8 @@ public class Blocks {
 				BlockInfo.WEATHER_TE_KEY);
 		GameRegistry.registerTileEntity(TileEntityCrate.class,
 				BlockInfo.CRATE_TE_KEY);
+		
+		GameRegistry.registerTileEntity(TileEntityLiquidME.class, BlockInfo.LIQUID_TE_KEY);
 	}
 
 	public static void registerRecipes() {

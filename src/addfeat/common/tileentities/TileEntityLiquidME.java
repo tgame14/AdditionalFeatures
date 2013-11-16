@@ -19,8 +19,8 @@ public class TileEntityLiquidME extends TileEntity implements IGridTileEntity {
 	private int timer;
 
 	public TileEntityLiquidME() {
-		this.timer = 1200;
-		
+		timer = 1200;
+
 	}
 
 	@Override
@@ -37,25 +37,27 @@ public class TileEntityLiquidME extends TileEntity implements IGridTileEntity {
 	@Override
 	public void updateEntity() {
 
-		if (!worldObj.isRemote && this.timer == 0) {
-			for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
-				if (worldObj.getBlockTileEntity(xCoord + dir.offsetX, yCoord
-						+ dir.offsetY, zCoord + dir.offsetZ) != null) {
+		if (!worldObj.isRemote) {
+			if (timer == 0) {
+				for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
 					if (worldObj.getBlockTileEntity(xCoord + dir.offsetX,
-							yCoord + dir.offsetY, zCoord + dir.offsetZ) instanceof IGridTileEntity) {
-						if (!(worldObj.getBlockTileEntity(xCoord + dir.offsetX,
-								yCoord + dir.offsetY, zCoord + dir.offsetZ) instanceof TileEntityLiquidME))
-							worldObj.setBlock(xCoord + dir.offsetX, yCoord
-									+ dir.offsetY, zCoord + dir.offsetZ,
-									BlockInfo.LIQUID_ME_ID, 0, 3);
+							yCoord + dir.offsetY, zCoord + dir.offsetZ) != null) {
+						if (worldObj.getBlockTileEntity(xCoord + dir.offsetX,
+								yCoord + dir.offsetY, zCoord + dir.offsetZ) instanceof IGridTileEntity) {
+							if (!(worldObj.getBlockTileEntity(xCoord
+									+ dir.offsetX, yCoord + dir.offsetY, zCoord
+									+ dir.offsetZ) instanceof TileEntityLiquidME))
+								worldObj.setBlock(xCoord + dir.offsetX, yCoord
+										+ dir.offsetY, zCoord + dir.offsetZ,
+										BlockInfo.LIQUID_ME_ID, 0, 3);
+						}
 
 					}
-
 				}
+				timer = 1200;
 			}
-			this.timer = 1200;
+			timer--;
 		}
-		this.timer--;
 	}
 
 	@Override
@@ -67,11 +69,13 @@ public class TileEntityLiquidME extends TileEntity implements IGridTileEntity {
 	@Override
 	public boolean isPowered() {
 		return powerStatus;
+
 	}
 
 	@Override
 	public IGridInterface getGrid() {
 		return grid;
+
 	}
 
 	@Override
@@ -83,6 +87,7 @@ public class TileEntityLiquidME extends TileEntity implements IGridTileEntity {
 	@Override
 	public World getWorld() {
 		return worldObj;
+
 	}
 
 	@Override
@@ -97,20 +102,22 @@ public class TileEntityLiquidME extends TileEntity implements IGridTileEntity {
 		super.invalidate();
 		MinecraftForge.EVENT_BUS.post(new GridTileUnloadEvent(this, worldObj,
 				getLocation()));
+
 	}
 
 	@Override
 	public void writeToNBT(NBTTagCompound compound) {
 		super.writeToNBT(compound);
 
-		compound.setShort("Timer", (short) this.timer);
+		compound.setShort("Timer", (short) timer);
+
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
 
-		this.timer = compound.getShort("Timer");
+		timer = compound.getShort("Timer");
 
 	}
 

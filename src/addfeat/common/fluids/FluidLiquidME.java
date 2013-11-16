@@ -11,7 +11,7 @@ public class FluidLiquidME extends BlockFluidClassic {
 
 	public FluidLiquidME(int id, Fluid fluid, Material material) {
 		super(BlockInfo.LIQUID_ME_ID, Fluids.fluidME, Fluids.materialME);
-		setLightValue(4);
+		
 
 	}
 

@@ -23,6 +23,8 @@ public class ConfigHandler {
 
 		config.load();
 
+		// Config Registry of Blocks
+		
 		BlockInfo.DETECTOR_ID = config.getBlock(BlockInfo.DETECTOR_KEY,
 				BlockInfo.DETECTOR_DEFAULT).getInt();
 		BlockInfo.BOMB_ID = config.getBlock(BlockInfo.BOMB_KEY,
@@ -33,9 +35,19 @@ public class ConfigHandler {
 				BlockInfo.WEATHER_DEFAULT).getInt();
 		BlockInfo.CRATE_ID = config.getBlock(BlockInfo.CRATE_KEY,
 				BlockInfo.CRATE_DEFAULT).getInt();
-
+		
+		
+		// Config Registry of Blocks for Applied Thermodynamics
 		BlockInfo.LIQUID_ME_ID = config.getBlock(BlockInfo.LIQUID_ME_KEY,
 				BlockInfo.LIQUID_ME_DEFAULT).getInt();
+		BlockInfo.JELLO_ID = config.getBlock(BlockInfo.JELLO_KEY,
+				BlockInfo.JELLO_DEFAULT).getInt();
+		
+		// Config Registry for Disabling and Enabling Features
+		ConfigInfo.FURNACE_RECIPES = config.get(ConfigInfo.FEATURE_KEY,
+				ConfigInfo.FURNACE_RECIPES_KEY,
+				ConfigInfo.FURNACE_RECIPES_DEFAULT).getBoolean(
+				ConfigInfo.FURNACE_RECIPES_DEFAULT);
 
 		ItemInfo.SHARD_ID = config.getItem(ItemInfo.SHARD_KEY,
 				ItemInfo.SHARD_DEFAULT).getInt() - 256;
@@ -45,5 +57,4 @@ public class ConfigHandler {
 		config.save();
 		System.out.println("[" + ModInfo.NAME + "] Config Loaded");
 	}
-
 }

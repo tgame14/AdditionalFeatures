@@ -36,14 +36,11 @@ public class BlockFluidME extends BlockFluidClassic implements
 		setCreativeTab(AddFeat.AddFeatTab);
 		setUnlocalizedName(BlockInfo.LIQUID_ME_UNLOCALIZED_NAME);
 		setHardness(1000F);
+		setLightValue(0.8F);
 
 		this.flag = false;
 	}
 
-	@Override
-	public int tickRate(World world) {
-		return 4000;
-	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
@@ -77,6 +74,7 @@ public class BlockFluidME extends BlockFluidClassic implements
 	@Override
 	public TileEntity createNewTileEntity(World world) {
 		return new TileEntityLiquidME();
+		
 	}
 
 }

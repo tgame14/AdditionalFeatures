@@ -69,6 +69,15 @@ public class BlockInfo {
 	public static final String LIQUID_ME_UNLOCALIZED_NAME = "liquidME";
 	public static final String LIQUID_STILL_TEXTURE = "LiquidMEStill";
 	public static final String LIQUID_FLOW_TEXTURE = "LiquidMEFlowing";
+	public static final String LIQUID_TE_KEY = "TileEntityLiquidME";
+	
+	
+	public static int JELLO_ID;
+	public static final int JELLO_DEFAULT = 2081;
+	public static final String JELLO_KEY = "JelloBrick";
+	public static final String JELLO_NAME = "Jello Brick";
+	public static final String JELLO_UNLOCALIZED_NAME = "jelloBrick";
+	public static final String JELLO_TEXTURE = "jelloBrick";
 	
 	
 	

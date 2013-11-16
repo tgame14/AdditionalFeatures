@@ -6,9 +6,11 @@ import net.minecraftforge.event.ForgeSubscribe;
 import addfeat.common.blocks.Blocks;
 import addfeat.common.client.interfaces.GuiHandler;
 import addfeat.common.config.ConfigHandler;
+import addfeat.common.config.ConfigInfo;
 import addfeat.common.entities.Entities;
 import addfeat.common.fluids.Fluids;
 import addfeat.common.items.Items;
+import addfeat.common.network.EventBusListener;
 import addfeat.common.proxies.CommonProxy;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -19,7 +21,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
-@Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION)
+@Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = "required-after:AppliedEnergistics")
 @NetworkMod(channels = { ModInfo.CHANNEL }, clientSideRequired = true, serverSideRequired = false)
 public class AddFeat {
 
@@ -44,6 +46,8 @@ public class AddFeat {
 
 		proxy.initSounds();
 		proxy.initRenderers();
+		
+		EventBusListener.init();
 	}
 
 	@EventHandler
@@ -52,7 +56,9 @@ public class AddFeat {
 		Items.addNames();
 		Blocks.addNames();
 
-		AddFurnaceRecipes.init();
+		if(ConfigInfo.FURNACE_RECIPES)
+			AddFurnaceRecipes.init();
+		
 		Items.registerRecipes();
 		Blocks.registerRecipes();
 		Entities.init();
@@ -60,12 +66,7 @@ public class AddFeat {
 
 	}
 
-	@ForgeSubscribe
-	public void postStitch(TextureStitchEvent.Post event) {
-		Fluids.fluidME.setIcons(Blocks.fluidME.getBlockTextureFromSide(0),
-				Blocks.fluidME.getBlockTextureFromSide(1));
-
-	}
+	
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {

@@ -27,7 +27,9 @@ public class Fluids {
 	}
 	
 	public static void initFluidProperties() {
-		fluidME.setViscosity(5000).setDensity(2000);
+		//Temperature does nothing, will be useful when applying HEAT in Applied Thermodynamics
+		
+		fluidME.setViscosity(5000).setDensity(2000).setTemperature(372);
 		
 	}
 	
