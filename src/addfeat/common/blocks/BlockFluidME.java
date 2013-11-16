@@ -10,6 +10,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import addfeat.common.AddFeat;
@@ -28,8 +29,6 @@ public class BlockFluidME extends BlockFluidClassic implements
 	@SideOnly(Side.CLIENT)
 	protected Icon flowingIcon;
 
-	private boolean flag;
-
 	public BlockFluidME(int id) {
 		super(id, Fluids.fluidME, Fluids.materialME);
 
@@ -38,7 +37,6 @@ public class BlockFluidME extends BlockFluidClassic implements
 		setHardness(1000F);
 		setLightValue(0.8F);
 
-		this.flag = false;
 	}
 
 	@SideOnly(Side.CLIENT)
