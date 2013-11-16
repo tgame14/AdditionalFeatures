@@ -48,8 +48,8 @@ public class BlockExhaustME extends BlockContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(World world) {
-		// TODO Auto-generated method stub
-		return null;
+		return new TileEntityMEExhaust();
+		
 	}
 
 }
