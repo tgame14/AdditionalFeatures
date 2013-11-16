@@ -84,6 +84,7 @@ public class BlockInfo {
 	public static final String EXHAUST_KEY = "MEExhaust";
 	public static final String EXHAUST_NAME = "ME Heat Exhaust";
 	public static final String EXHAUST_UNLOCALIZED_NAME = "exhaustME";
+	public static final String EXHAUST_TE_KEY = "TileEntityMEExhaust";
 	public static final String[] EXHAUST_TEXTURES = {"exhaustTop", "exhaustSide", "exhaustBot"};
 	
 	

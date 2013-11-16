@@ -1,87 +1,108 @@
 package addfeat.common.tileentities;
 
 import appeng.api.WorldCoord;
+import appeng.api.events.GridTileLoadEvent;
+import appeng.api.events.GridTileUnloadEvent;
 import appeng.api.me.tiles.IGridMachine;
 import appeng.api.me.util.IGridInterface;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 
 public class TileEntityMEExhaust extends TileEntity implements IGridMachine {
 
-	private float defaultEnergy;
-	private short heatPercent;
-	private int exhaustHeatGen;
+	private boolean powerStatus = true, networkReady = false;
+	private float heatPercent;
 	private IGridInterface grid;
-	
-	
+
 	public TileEntityMEExhaust() {
-		this.defaultEnergy = grid.getPowerUsageAvg()
-		
+		this.heatPercent = 0;
+
 	}
-	
-	
-	
-	
+
+	@Override
+	public void updateEntity() {
+		if (!worldObj.isRemote && grid != null) {
+			heatPercent = (grid.getPowerUsageAvg() / 10) / 100;
+			
+			System.out.println("Heat % : " + heatPercent);
+			System.out.println("coldPower : " + (grid.getPowerUsageAvg() - getPowerDrainPerTick()));
+
+		}
+	}
+
 	@Override
 	public WorldCoord getLocation() {
-		// TODO Auto-generated method stub
-		return null;
+		return new WorldCoord(xCoord, yCoord, zCoord);
+
 	}
 
 	@Override
 	public boolean isValid() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public void setPowerStatus(boolean hasPower) {
-		// TODO Auto-generated method stub
-		
+		powerStatus = hasPower;
+
 	}
 
 	@Override
 	public boolean isPowered() {
-		// TODO Auto-generated method stub
-		return false;
+		return powerStatus;
+
 	}
 
 	@Override
 	public IGridInterface getGrid() {
-		// TODO Auto-generated method stub
-		return null;
+		return grid;
+
 	}
 
 	@Override
 	public void setGrid(IGridInterface gi) {
-		// TODO Auto-generated method stub
-		
+		grid = gi;
+
 	}
 
 	@Override
 	public World getWorld() {
-		// TODO Auto-generated method stub
-		return null;
+		return worldObj;
+
 	}
 
 	@Override
 	public float getPowerDrainPerTick() {
-		// TODO Auto-generated method stub
-		return 0;
+		return heatPercent * grid.getPowerUsageAvg();
+
 	}
 
 	@Override
 	public void setNetworkReady(boolean isReady) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public boolean isMachineActive() {
-		// TODO Auto-generated method stub
-		return false;
+		return isPowered();
+
 	}
-	
-	
+
+	@Override
+	public void validate() {
+		super.validate();
+		MinecraftForge.EVENT_BUS.post(new GridTileLoadEvent(this, worldObj,
+				getLocation()));
+	}
+
+	@Override
+	public void invalidate() {
+		super.invalidate();
+		MinecraftForge.EVENT_BUS.post(new GridTileUnloadEvent(this, worldObj,
+				getLocation()));
+
+	}
 
 }

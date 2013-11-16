@@ -3,12 +3,12 @@ package addfeat.common.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import addfeat.common.config.ConfigHandler;
 import addfeat.common.config.ConfigInfo;
 import addfeat.common.items.Items;
 import addfeat.common.tileentities.TileEntityBomb;
 import addfeat.common.tileentities.TileEntityCrate;
 import addfeat.common.tileentities.TileEntityLiquidME;
+import addfeat.common.tileentities.TileEntityMEExhaust;
 import addfeat.common.tileentities.TileEntityOceanFiller;
 import addfeat.common.tileentities.TileEntityPlayerDetector;
 import addfeat.common.tileentities.TileEntityWeatherBox;
@@ -48,7 +48,7 @@ public class Blocks {
 
 		jelloBrick = new BlockJelloBrick(BlockInfo.JELLO_ID);
 		GameRegistry.registerBlock(jelloBrick, BlockInfo.JELLO_KEY);
-		
+
 		exhaustME = new BlockExhaustME(BlockInfo.EXHAUST_ID);
 		GameRegistry.registerBlock(exhaustME, BlockInfo.EXHAUST_KEY);
 
@@ -86,6 +86,9 @@ public class Blocks {
 		if (ConfigInfo.LIQUID_CONSUME)
 			GameRegistry.registerTileEntity(TileEntityLiquidME.class,
 					BlockInfo.LIQUID_TE_KEY);
+
+		GameRegistry.registerTileEntity(TileEntityMEExhaust.class,
+				BlockInfo.EXHAUST_TE_KEY);
 	}
 
 	public static void registerRecipes() {

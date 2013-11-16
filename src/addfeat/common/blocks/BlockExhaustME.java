@@ -8,6 +8,7 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import addfeat.common.AddFeat;
 import addfeat.common.ModInfo;
+import addfeat.common.tileentities.TileEntityMEExhaust;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
