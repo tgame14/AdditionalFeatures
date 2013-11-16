@@ -17,46 +17,10 @@ public class TileEntityLiquidME extends TileEntity implements IGridTileEntity {
 	private Boolean powerStatus = true, networkReady = true;
 	private IGridInterface grid;
 	private int timer;
-	private int tickTimer;
 
 	public TileEntityLiquidME() {
 		timer = 1200;
-		tickTimer = 12000 * (((worldObj.getBiomeGenForCoords(xCoord, yCoord).getIntTemperature())) / 65536);
-	}
 
-	@Override
-	public void updateEntity() {
-		if (!worldObj.isRemote) {
-			checkSpread();
-
-		}
-
-	}
-
-	private void solidify() {
-		worldObj.setBlock(xCoord, yCoord, zCoord, BlockInfo.JELLO_ID);
-
-	}
-
-	private void checkSpread() {
-
-		if (timer == 0) {
-			for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
-				if (worldObj.getBlockTileEntity(xCoord + dir.offsetX, yCoord
-						+ dir.offsetY, zCoord + dir.offsetZ) != null) {
-					if (worldObj.getBlockTileEntity(xCoord + dir.offsetX,
-							yCoord + dir.offsetY, zCoord + dir.offsetZ) instanceof IGridTileEntity) {
-						if (!(worldObj.getBlockTileEntity(xCoord + dir.offsetX,
-								yCoord + dir.offsetY, zCoord + dir.offsetZ) instanceof TileEntityLiquidME))
-							worldObj.setBlock(xCoord + dir.offsetX, yCoord
-									+ dir.offsetY, zCoord + dir.offsetZ,
-									BlockInfo.LIQUID_ME_ID, 0, 3);
-					}
-				}
-			}
-			timer = 1200;
-		}
-		timer--;
 	}
 
 	@Override
@@ -68,6 +32,32 @@ public class TileEntityLiquidME extends TileEntity implements IGridTileEntity {
 	public boolean isValid() {
 		return true;
 
+	}
+
+	@Override
+	public void updateEntity() {
+
+		if (!worldObj.isRemote) {
+			if (timer == 0) {
+				for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
+					if (worldObj.getBlockTileEntity(xCoord + dir.offsetX,
+							yCoord + dir.offsetY, zCoord + dir.offsetZ) != null) {
+						if (worldObj.getBlockTileEntity(xCoord + dir.offsetX,
+								yCoord + dir.offsetY, zCoord + dir.offsetZ) instanceof IGridTileEntity) {
+							if (!(worldObj.getBlockTileEntity(xCoord
+									+ dir.offsetX, yCoord + dir.offsetY, zCoord
+									+ dir.offsetZ) instanceof TileEntityLiquidME))
+								worldObj.setBlock(xCoord + dir.offsetX, yCoord
+										+ dir.offsetY, zCoord + dir.offsetZ,
+										BlockInfo.LIQUID_ME_ID, 0, 3);
+						}
+
+					}
+				}
+				timer = 1200;
+			}
+			timer--;
+		}
 	}
 
 	@Override

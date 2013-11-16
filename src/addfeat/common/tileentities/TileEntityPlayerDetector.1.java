@@ -2,7 +2,6 @@ package addfeat.common.tileentities;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.ForgeDirection;
 
 public class TileEntityPlayerDetector extends TileEntity {
 
@@ -24,7 +23,7 @@ public class TileEntityPlayerDetector extends TileEntity {
 					&& worldObj.getBlockMetadata(xCoord, yCoord, zCoord) == 0) {
 				worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1,
 						3);
-
+				
 			}
 
 		}

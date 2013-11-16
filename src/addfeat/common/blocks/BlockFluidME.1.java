@@ -41,6 +41,7 @@ public class BlockFluidME extends BlockFluidClassic implements
 		this.flag = false;
 	}
 
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public Icon getIcon(int side, int meta) {
@@ -73,7 +74,7 @@ public class BlockFluidME extends BlockFluidClassic implements
 	@Override
 	public TileEntity createNewTileEntity(World world) {
 		return new TileEntityLiquidME();
-
+		
 	}
 
 }
