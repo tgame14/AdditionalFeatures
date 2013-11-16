@@ -35,6 +35,7 @@ public class Fluids {
 	
 	public static void addNames() {
 		LanguageRegistry.addName(fluidME, "Liquid ME");
+		
 	}
 	
 

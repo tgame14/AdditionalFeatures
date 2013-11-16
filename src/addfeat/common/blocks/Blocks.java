@@ -3,6 +3,8 @@ package addfeat.common.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import addfeat.common.config.ConfigHandler;
+import addfeat.common.config.ConfigInfo;
 import addfeat.common.items.Items;
 import addfeat.common.tileentities.TileEntityBomb;
 import addfeat.common.tileentities.TileEntityCrate;
@@ -21,7 +23,6 @@ public class Blocks {
 	public static Block crate;
 	public static Block fluidME;
 	public static Block jelloBrick;
-	
 
 	public static void init() {
 		playerDetector = new BlockPlayerDetector(BlockInfo.DETECTOR_ID);
@@ -38,13 +39,15 @@ public class Blocks {
 
 		crate = new BlockCrate(BlockInfo.CRATE_ID);
 		GameRegistry.registerBlock(crate, BlockInfo.CRATE_KEY);
-		
-		fluidME = new BlockFluidME(BlockInfo.LIQUID_ME_ID);
-		GameRegistry.registerBlock(fluidME, BlockInfo.LIQUID_ME_KEY);
-		
+
+		if (ConfigInfo.LIQUID_CONSUME) {
+			fluidME = new BlockFluidME(BlockInfo.LIQUID_ME_ID);
+			GameRegistry.registerBlock(fluidME, BlockInfo.LIQUID_ME_KEY);
+		}
+
 		jelloBrick = new BlockJelloBrick(BlockInfo.JELLO_ID);
 		GameRegistry.registerBlock(jelloBrick, BlockInfo.JELLO_KEY);
-		
+
 	}
 
 	public static void addNames() {
@@ -53,7 +56,10 @@ public class Blocks {
 		LanguageRegistry.addName(oceanFiller, BlockInfo.FILLER_NAME);
 		LanguageRegistry.addName(weatherBox, BlockInfo.WEATHER_NAME);
 		LanguageRegistry.addName(crate, BlockInfo.CRATE_NAME);
-		LanguageRegistry.addName(fluidME, BlockInfo.LIQUID_ME_NAME);
+
+		if (ConfigInfo.LIQUID_CONSUME)
+			LanguageRegistry.addName(fluidME, BlockInfo.LIQUID_ME_NAME);
+
 		LanguageRegistry.addName(jelloBrick, BlockInfo.JELLO_NAME);
 	}
 
@@ -71,8 +77,10 @@ public class Blocks {
 				BlockInfo.WEATHER_TE_KEY);
 		GameRegistry.registerTileEntity(TileEntityCrate.class,
 				BlockInfo.CRATE_TE_KEY);
-		
-		GameRegistry.registerTileEntity(TileEntityLiquidME.class, BlockInfo.LIQUID_TE_KEY);
+
+		if (ConfigInfo.LIQUID_CONSUME)
+			GameRegistry.registerTileEntity(TileEntityLiquidME.class,
+					BlockInfo.LIQUID_TE_KEY);
 	}
 
 	public static void registerRecipes() {
@@ -85,6 +93,5 @@ public class Blocks {
 				"XYX", 'X', Item.bucketWater, 'Z', new ItemStack(Items.Core, 1,
 						2), 'Y', Item.poisonousPotato);
 	}
-	
-	
+
 }

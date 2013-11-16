@@ -16,13 +16,13 @@ public class TileEntityLiquidME extends TileEntity implements IGridTileEntity {
 
 	private boolean powerStatus = true, networkReady = true;
 	private IGridInterface grid;
-	private int timer;
-	private int tickTimer;
+	private int spreadTimer;
+	private int solidTimer;
 	private boolean ticked;
 
 	public TileEntityLiquidME() {
-		timer = 1200;
-		tickTimer = 12000;
+		spreadTimer = 1200;
+		solidTimer = 12000;
 		ticked = false;
 
 	}
@@ -31,7 +31,7 @@ public class TileEntityLiquidME extends TileEntity implements IGridTileEntity {
 	public void updateEntity() {
 		if (!worldObj.isRemote) {
 			if (!ticked) {
-				tickTimer = (int) (12000 * getBiomeCustomTemp());
+				solidTimer = (int) (12000 * getBiomeCustomTemp());
 				ticked = true;
 			}
 			checkSpread();
@@ -48,15 +48,15 @@ public class TileEntityLiquidME extends TileEntity implements IGridTileEntity {
 	}
 
 	private void solidify() {
-		if (tickTimer == 0) {
+		if (solidTimer == 0 && worldObj.getBlockMetadata(xCoord, yCoord, zCoord) == 0) {
 			worldObj.setBlock(xCoord, yCoord, zCoord, BlockInfo.JELLO_ID);
 		}
-		tickTimer--;
+		solidTimer--;
 
 	}
 
 	private void checkSpread() {
-		if (timer == 0) {
+		if (spreadTimer == 0) {
 			for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
 				final int x = this.xCoord + dir.offsetX;
 				final int y = this.yCoord + dir.offsetY;
@@ -69,9 +69,9 @@ public class TileEntityLiquidME extends TileEntity implements IGridTileEntity {
 							3);
 				}
 			}
-			timer = 1200;
+			spreadTimer = 1200;
 		}
-		timer--;
+		spreadTimer--;
 	}
 
 	@Override
@@ -134,8 +134,8 @@ public class TileEntityLiquidME extends TileEntity implements IGridTileEntity {
 	public void writeToNBT(NBTTagCompound compound) {
 		super.writeToNBT(compound);
 
-		compound.setShort("Timer", (short) timer);
-		compound.setInteger("TickTimer", tickTimer);
+		compound.setShort("spreadTimer", (short) spreadTimer);
+		compound.setInteger("solidTimer", solidTimer);
 
 	}
 
@@ -143,8 +143,8 @@ public class TileEntityLiquidME extends TileEntity implements IGridTileEntity {
 	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
 
-		timer = compound.getShort("Timer");
-		tickTimer = compound.getInteger("TickTimer");
+		spreadTimer = compound.getShort("spreadTimer");
+		solidTimer = compound.getInteger("solidTimer");
 
 	}
 

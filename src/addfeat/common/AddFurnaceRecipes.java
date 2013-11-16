@@ -7,7 +7,7 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class AddFurnaceRecipes {
-	
+
 	public static void init() {
 		GameRegistry.addSmelting(Item.bucketEmpty.itemID, new ItemStack(
 				Item.ingotIron, 2), 0.0F);

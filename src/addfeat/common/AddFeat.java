@@ -17,6 +17,8 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLInterModComms.IMCEvent;
+import cpw.mods.fml.common.event.FMLInterModComms.IMCMessage;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
@@ -46,7 +48,7 @@ public class AddFeat {
 
 		proxy.initSounds();
 		proxy.initRenderers();
-		
+
 		EventBusListener.init();
 	}
 
@@ -56,17 +58,15 @@ public class AddFeat {
 		Items.addNames();
 		Blocks.addNames();
 
-		if(ConfigInfo.FURNACE_RECIPES)
+		if (ConfigInfo.FURNACE_RECIPES)
 			AddFurnaceRecipes.init();
-		
+
 		Items.registerRecipes();
 		Blocks.registerRecipes();
 		Entities.init();
 		new GuiHandler();
 
 	}
-
-	
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
