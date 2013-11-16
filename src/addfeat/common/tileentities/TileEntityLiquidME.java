@@ -14,7 +14,7 @@ import appeng.api.me.util.IGridInterface;
 
 public class TileEntityLiquidME extends TileEntity implements IGridTileEntity {
 
-	private boolean powerStatus = true, networkReady = true;
+	private boolean powerStatus = true;
 	private IGridInterface grid;
 	private int spreadTimer;
 	private int solidTimer;
