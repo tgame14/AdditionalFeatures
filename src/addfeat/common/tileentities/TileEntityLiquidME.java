@@ -58,13 +58,13 @@ public class TileEntityLiquidME extends TileEntity implements IGridTileEntity {
 	private void checkSpread() {
 		if (spreadTimer == 0) {
 			for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
-				final int x = this.xCoord + dir.offsetX;
-				final int y = this.yCoord + dir.offsetY;
-				final int z = this.zCoord + dir.offsetZ;
-				final TileEntity te = this.worldObj.getBlockTileEntity(x, y, z);
+				final int x = xCoord + dir.offsetX;
+				final int y = yCoord + dir.offsetY;
+				final int z = zCoord + dir.offsetZ;
+				final TileEntity te = worldObj.getBlockTileEntity(x, y, z);
 
 				if (te != null && te instanceof IGridTileEntity
-						&& !(te instanceof TileEntityLiquidME)) {
+						&& !(te instanceof TileEntityLiquidME) && te instanceof TileEntityMEExhaust) {
 					this.worldObj.setBlock(x, y, z, BlockInfo.LIQUID_ME_ID, 0,
 							3);
 				}

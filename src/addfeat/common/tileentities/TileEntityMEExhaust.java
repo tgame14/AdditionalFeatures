@@ -28,9 +28,9 @@ public class TileEntityMEExhaust extends TileEntity implements IGridMachine {
 	Random gen = new Random();
 
 	public TileEntityMEExhaust() {
-		this.heatPercent = 0;
-		this.ticker = 10;
-		this.meltTicker = 0;
+		heatPercent = 0;
+		ticker = 10;
+		meltTicker = 0;
 
 	}
 
@@ -56,22 +56,20 @@ public class TileEntityMEExhaust extends TileEntity implements IGridMachine {
 	private boolean isBareBones() {
 		for (int i = 0; i < grid.getMachines().size(); i++) {
 			if (!(isSafeFromMelt(grid.getMachines().get(i)))) {
-				System.out.println("barebonesfalse");
 				return false;
 			}
 		}
-		System.out.println("barebonetrue");
 		return true;
 	}
 
 	private boolean isSafeFromMelt(TileRef machine) {
-		final int x = machine.x;
-		final int y = machine.y;
-		final int z = machine.z;
+		int x = machine.x;
+		int y = machine.y;
+		int z = machine.z;
 
-		final int machineBlockID = worldObj.getBlockId(x, y, z);
-		final int controllerID = Blocks.blkController.itemID;
-		final TileEntity te = worldObj.getBlockTileEntity(x, y, z);
+		int machineBlockID = worldObj.getBlockId(x, y, z);
+		int controllerID = Blocks.blkController.itemID;
+		TileEntity te = worldObj.getBlockTileEntity(x, y, z);
 
 		if (machineBlockID == controllerID || te instanceof ICellContainer
 				|| te instanceof TileEntityMEExhaust) {
