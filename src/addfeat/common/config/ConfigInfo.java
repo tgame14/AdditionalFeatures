@@ -12,4 +12,6 @@ public class ConfigInfo {
 	public static final String LIQUID_CONSUME_KEY = "Enable Liquid ME";
 	public static final boolean LIQUID_CONSUME_DEFAULT = true;
 	
+	
+	
 }

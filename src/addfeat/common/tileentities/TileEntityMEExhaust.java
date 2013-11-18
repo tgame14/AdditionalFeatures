@@ -2,6 +2,7 @@ package addfeat.common.tileentities;
 
 import java.util.Random;
 
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -83,6 +84,7 @@ public class TileEntityMEExhaust extends TileEntity implements IGridMachine {
 			WorldCoord w = getRandomAETile();
 
 			if (heatPercent >= 0.0 && meltTicker == 0) {
+				
 				worldObj.destroyBlock(w.x, w.y, w.z, false);
 				worldObj.setBlock(w.x, w.y, w.z, Fluids.fluidME.getBlockID());
 				meltTicker = 800;
@@ -180,6 +182,26 @@ public class TileEntityMEExhaust extends TileEntity implements IGridMachine {
 		MinecraftForge.EVENT_BUS.post(new GridTileUnloadEvent(this, worldObj,
 				getLocation()));
 
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound compound) {
+		super.writeToNBT(compound);
+		
+		compound.setByte("Ticker", ticker);
+		compound.setFloat("HeatPercentage", heatPercent);
+		compound.setShort("meltingTicker", meltTicker);
+		
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound compound) {
+		super.readFromNBT(compound);
+		
+		ticker = compound.getByte("Ticker");
+		heatPercent = compound.getFloat("HeatPercentage");
+		meltTicker = compound.getShort("meltingTicker");
+		
 	}
 
 }

@@ -1,8 +1,11 @@
 package addfeat.common.fluids;
 
+import com.google.common.collect.Sets.SetView;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import addfeat.common.blocks.BlockInfo;
@@ -11,7 +14,6 @@ public class FluidLiquidME extends BlockFluidClassic {
 
 	public FluidLiquidME(int id, Fluid fluid, Material material) {
 		super(BlockInfo.LIQUID_ME_ID, Fluids.fluidME, Fluids.materialME);
-		
 
 	}
 
@@ -28,6 +30,7 @@ public class FluidLiquidME extends BlockFluidClassic {
 			return false;
 		return super.displaceIfPossible(world, x, y, z);
 	}
+	
 	
 	
 

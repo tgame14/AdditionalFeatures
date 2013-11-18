@@ -9,9 +9,11 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import addfeat.common.AddFeat;
 import addfeat.common.ModInfo;
@@ -36,6 +38,10 @@ public class BlockFluidME extends BlockFluidClassic implements
 		setUnlocalizedName(BlockInfo.LIQUID_ME_UNLOCALIZED_NAME);
 		setHardness(1000F);
 		setLightValue(0.8F);
+		setDensity(5000);
+		setTemperature(372);
+		Fluids.fluidME.setViscosity(5000);
+		setQuantaPerBlock(3);
 
 	}
 
@@ -73,5 +79,4 @@ public class BlockFluidME extends BlockFluidClassic implements
 		return new TileEntityLiquidME();
 
 	}
-
 }

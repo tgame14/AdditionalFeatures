@@ -136,6 +136,7 @@ public class TileEntityLiquidME extends TileEntity implements IGridTileEntity {
 
 		compound.setShort("spreadTimer", (short) spreadTimer);
 		compound.setInteger("solidTimer", solidTimer);
+		compound.setBoolean("isTicked", ticked);
 
 	}
 
@@ -145,6 +146,7 @@ public class TileEntityLiquidME extends TileEntity implements IGridTileEntity {
 
 		spreadTimer = compound.getShort("spreadTimer");
 		solidTimer = compound.getInteger("solidTimer");
+		ticked = compound.getBoolean("isTicked");
 
 	}
 
