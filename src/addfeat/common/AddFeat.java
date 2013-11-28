@@ -1,8 +1,6 @@
 package addfeat.common;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.event.ForgeSubscribe;
 import addfeat.common.blocks.Blocks;
 import addfeat.common.client.interfaces.GuiHandler;
 import addfeat.common.config.ConfigHandler;
@@ -11,20 +9,21 @@ import addfeat.common.entities.Entities;
 import addfeat.common.events.EventBusListener;
 import addfeat.common.fluids.Fluids;
 import addfeat.common.items.Items;
+import addfeat.common.logic.LogicHeat;
+import addfeat.common.network.PacketHandler;
 import addfeat.common.proxies.CommonProxy;
+import appeng.api.Util;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLInterModComms.IMCEvent;
-import cpw.mods.fml.common.event.FMLInterModComms.IMCMessage;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
 @Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = "required-after:AppliedEnergistics")
-@NetworkMod(channels = { ModInfo.CHANNEL }, clientSideRequired = true, serverSideRequired = false)
+@NetworkMod(channels = { ModInfo.CHANNEL }, packetHandler = PacketHandler.class, clientSideRequired = true, serverSideRequired = false)
 public class AddFeat {
 
 	public static final CreativeTabs AddFeatTab = new AddFeatTab(
@@ -66,6 +65,10 @@ public class AddFeat {
 		Entities.init();
 		new GuiHandler();
 
+		if (ConfigInfo.ENABLE_HEAT) {
+			Util.getAppEngApi().getGridCacheRegistry()
+			.registerGridCache(LogicHeat.class);
+		}
 	}
 
 	@EventHandler

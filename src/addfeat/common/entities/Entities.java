@@ -10,6 +10,8 @@ public class Entities {
 		EntityRegistry.registerModEntity(EntitySpaceship.class, "EntitySpaceship", 0, AddFeat.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntityBomb.class, "EntityBomb", 1, AddFeat.instance, 80, 3, true);
 		*/
+		
+		EntityRegistry.registerModEntity(EntityDroid.class, "Entity Droid", 2, AddFeat.instance, 80, 3, true);
 	}
 	
 }

@@ -7,6 +7,7 @@ import addfeat.common.config.ConfigInfo;
 import addfeat.common.items.Items;
 import addfeat.common.tileentities.TileEntityBomb;
 import addfeat.common.tileentities.TileEntityCrate;
+import addfeat.common.tileentities.TileEntityLiquidCooler;
 import addfeat.common.tileentities.TileEntityLiquidME;
 import addfeat.common.tileentities.TileEntityMEExhaust;
 import addfeat.common.tileentities.TileEntityOceanFiller;
@@ -24,6 +25,8 @@ public class Blocks {
 	public static Block fluidME;
 	public static Block jelloBrick;
 	public static Block exhaustME;
+	public static Block monitorME;
+	public static Block liquidCooler;
 
 	public static void init() {
 		playerDetector = new BlockPlayerDetector(BlockInfo.DETECTOR_ID);
@@ -52,6 +55,12 @@ public class Blocks {
 		exhaustME = new BlockExhaustME(BlockInfo.EXHAUST_ID);
 		GameRegistry.registerBlock(exhaustME, BlockInfo.EXHAUST_KEY);
 
+		monitorME = new BlockMonitorME(BlockInfo.MONITOR_ID);
+		GameRegistry.registerBlock(monitorME, BlockInfo.MONITOR_KEY);
+
+		liquidCooler = new BlockLiquidCooler(BlockInfo.LIQUICOOL_ID);
+		GameRegistry.registerBlock(liquidCooler, BlockInfo.LIQUICOOL_KEY);
+
 	}
 
 	public static void addNames() {
@@ -66,6 +75,8 @@ public class Blocks {
 
 		LanguageRegistry.addName(jelloBrick, BlockInfo.JELLO_NAME);
 		LanguageRegistry.addName(exhaustME, BlockInfo.EXHAUST_NAME);
+		LanguageRegistry.addName(monitorME, BlockInfo.MONITOR_NAME);
+		LanguageRegistry.addName(liquidCooler, BlockInfo.LIQUICOOL_NAME);
 	}
 
 	public static void registerTileEntities() {
@@ -89,6 +100,9 @@ public class Blocks {
 
 		GameRegistry.registerTileEntity(TileEntityMEExhaust.class,
 				BlockInfo.EXHAUST_TE_KEY);
+
+		GameRegistry.registerTileEntity(TileEntityLiquidCooler.class,
+				BlockInfo.LIQUICOOL_TE_KEY);
 	}
 
 	public static void registerRecipes() {

@@ -21,5 +21,21 @@ public class ItemInfo {
 			"Lapis Cluster" };
 	public static String[] CORE_ICONS = { "lapisCatalyst", "lapisFocus",
 			"lapisCluster" };
+	
+	public static int GOO_ID;
+	public static final String GOO_KEY = "Goo ME";
+	public static final int GOO_DEFAULT = 28000;
+	public static final String GOO_UNLOCALIZED_NAME = "MEGoo";
+	public static final String GOO_NAME = "ME Goo";
+	public static final String GOO_ICON = "MEGoo";
+	
+	public static int DROID_ID;	
+	public static final String DROID_KEY = "Droid";
+	public static final int DROID_DEFAULT = 24203;
+	public static final String DROID_UNLOCAZLIED_NAME = "droidItem";
+	public static final String DROID_NAME = "Floating Droid";
+	public static final String DROID_ICON = "droidItem";
+	
+	
 
 }

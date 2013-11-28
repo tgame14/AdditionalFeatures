@@ -12,6 +12,9 @@ public class ConfigInfo {
 	public static final String LIQUID_CONSUME_KEY = "Enable Liquid ME";
 	public static final boolean LIQUID_CONSUME_DEFAULT = true;
 	
+	public static boolean ENABLE_HEAT;
+	public static final String ENABLE_HEAT_KEY = "Toggle Heat Functions";
+	public static final boolean ENABLE_HEAT_DEFAULT = true;
 	
 	
 }

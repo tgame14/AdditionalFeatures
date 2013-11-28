@@ -1,11 +1,12 @@
 package addfeat.common.blocks;
 
-import addfeat.common.AddFeat;
-import addfeat.common.tileentities.TileEntityCan;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import addfeat.common.AddFeat;
+import addfeat.common.tileentities.TileEntityCan;
 
 public class BlockGarbageCan extends BlockContainer{
 	public BlockGarbageCan(int id) {
@@ -16,7 +17,18 @@ public class BlockGarbageCan extends BlockContainer{
 		setUnlocalizedName(BlockInfo.GARBAGE_UNLOCALIZED_NAME);
 	}
 		
+	@Override
+	public boolean shouldSideBeRendered(IBlockAccess par1iBlockAccess,
+			int par2, int par3, int par4, int par5) {
+		return false;
+		
+	}
 	
+	@Override
+	public boolean isOpaqueCube() {
+		return false;
+		
+	}
 
 	
 	

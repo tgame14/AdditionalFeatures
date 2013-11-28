@@ -10,7 +10,7 @@ import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
 
 public class GuiHandler implements IGuiHandler {
-	
+
 	public GuiHandler() {
 		NetworkRegistry.instance().registerGuiHandler(AddFeat.instance, this);
 	}
@@ -19,18 +19,16 @@ public class GuiHandler implements IGuiHandler {
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world,
 			int x, int y, int z) {
 		switch (ID) {
-		
+
 		case 0:
-			TileEntity te1 = world.getBlockTileEntity(x, y, z);
-			if(te1 != null && te1 instanceof TileEntityCan) {
-				return new ContainerCan(player.inventory, (TileEntityCan)te1);
-			}
+
 			break;
-			
+
 		case 1:
 			TileEntity te2 = world.getBlockTileEntity(x, y, z);
-			if(te2 != null && te2 instanceof TileEntityCrate) {
-				return new ContainerCrate(player.inventory, (TileEntityCrate)te2);
+			if (te2 != null && te2 instanceof TileEntityCrate) {
+				return new ContainerCrate(player.inventory,
+						(TileEntityCrate) te2);
 			}
 			break;
 		}
@@ -42,22 +40,17 @@ public class GuiHandler implements IGuiHandler {
 			int x, int y, int z) {
 		switch (ID) {
 		case 0:
-			TileEntity te1 = world.getBlockTileEntity(x, y, z);
-			if(te1 != null && te1 instanceof TileEntityCan) {
-				return new GuiGarbageCan(player.inventory, (TileEntityCan)te1);
-			}
-			break;
 			
+			break;
+
 		case 1:
 			TileEntity te2 = world.getBlockTileEntity(x, y, z);
-			if(te2 != null && te2 instanceof TileEntityCrate) {
-				return new GuiCrate(player.inventory, (TileEntityCrate)te2);
+			if (te2 != null && te2 instanceof TileEntityCrate) {
+				return new GuiCrate(player.inventory, (TileEntityCrate) te2);
 			}
 		}
 		return null;
-		
+
 	}
-	
-	
-	
+
 }

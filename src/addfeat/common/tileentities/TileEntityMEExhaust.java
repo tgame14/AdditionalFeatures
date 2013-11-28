@@ -2,112 +2,46 @@ package addfeat.common.tileentities;
 
 import java.util.Random;
 
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
-import addfeat.common.fluids.Fluids;
-import appeng.api.Blocks;
-import appeng.api.TileRef;
+import addfeat.common.items.Items;
 import appeng.api.WorldCoord;
 import appeng.api.events.GridTileLoadEvent;
 import appeng.api.events.GridTileUnloadEvent;
-import appeng.api.me.tiles.ICellContainer;
 import appeng.api.me.tiles.IGridMachine;
+import appeng.api.me.tiles.IGridTileEntity;
 import appeng.api.me.util.IGridInterface;
 
-public class TileEntityMEExhaust extends TileEntity implements IGridMachine {
+public class TileEntityMEExhaust extends TileEntity implements IGridTileEntity {
 
-	private boolean powerStatus = true, networkReady = false;
-	private float heatPercent;
+	private boolean powerStatus = false, networkReady = false;
 	private IGridInterface grid;
-	private byte ticker;
-	private short meltTicker;
-	private boolean bareBones;
-	private WorldCoord w;
+	private ItemStack gooStack;
 
 	Random gen = new Random();
+	private int gooTimer;
 
 	public TileEntityMEExhaust() {
-		heatPercent = 0;
-		ticker = 10;
-		meltTicker = 0;
+		gooTimer = 0;
+		gooStack = new ItemStack(Items.Goo);
 
 	}
 
 	@Override
 	public void updateEntity() {
-		if (!worldObj.isRemote && grid != null) {
+		if (!worldObj.isRemote) {
+			if (gooTimer <= 0 && powerStatus) {
+				worldObj.spawnEntityInWorld(new EntityItem(worldObj,
+						xCoord + 0.5, yCoord + 2.0, zCoord + 0.5, gooStack));
 
-			heatPercent = (grid.getPowerUsageAvg() / 10) / 100;
-
-			/*
-			 * System.out.println("Heat % : " + heatPercent);
-			 * System.out.println("coldPower : " + (grid.getPowerUsageAvg() -
-			 * getPowerDrainPerTick()));
-			 */
-			if (ticker == 0) {
-				OnOverHeat();
-				ticker = 10;
+				gooTimer = gen.nextInt(2000);
 			}
-			ticker--;
-		}
-	}
-
-	private boolean isBareBones() {
-		for (int i = 0; i < grid.getMachines().size(); i++) {
-			if (!(isSafeFromMelt(grid.getMachines().get(i)))) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	private boolean isSafeFromMelt(TileRef machine) {
-		int x = machine.x;
-		int y = machine.y;
-		int z = machine.z;
-
-		int machineBlockID = worldObj.getBlockId(x, y, z);
-		int controllerID = Blocks.blkController.itemID;
-		TileEntity te = worldObj.getBlockTileEntity(x, y, z);
-
-		if (machineBlockID == controllerID || te instanceof ICellContainer
-				|| te instanceof TileEntityMEExhaust) {
-			return true;
-		}
-		return false;
-	}
-
-	private void OnOverHeat() {
-		if (!(isBareBones())) {
-			WorldCoord w = getRandomAETile();
-
-			if (heatPercent >= 0.0 && meltTicker == 0) {
-				
-				worldObj.destroyBlock(w.x, w.y, w.z, false);
-				worldObj.setBlock(w.x, w.y, w.z, Fluids.fluidME.getBlockID());
-				meltTicker = 800;
-			}
-
-			meltTicker--;
-
-			if (heatPercent >= 0.66) {
-
-			}
-
-			if (heatPercent >= 0.90) {
-
-			}
+			gooTimer--;
 		}
 
-	}
-
-	private WorldCoord getRandomAETile() {
-		TileRef machine = grid.getMachines().get(
-				gen.nextInt(grid.getMachines().size()));
-
-		return new WorldCoord(machine.x, machine.y, machine.z);
 	}
 
 	@Override
@@ -152,24 +86,6 @@ public class TileEntityMEExhaust extends TileEntity implements IGridMachine {
 	}
 
 	@Override
-	public float getPowerDrainPerTick() {
-		return heatPercent * grid.getPowerUsageAvg();
-
-	}
-
-	@Override
-	public void setNetworkReady(boolean isReady) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public boolean isMachineActive() {
-		return isPowered();
-
-	}
-
-	@Override
 	public void validate() {
 		super.validate();
 		MinecraftForge.EVENT_BUS.post(new GridTileLoadEvent(this, worldObj,
@@ -182,26 +98,6 @@ public class TileEntityMEExhaust extends TileEntity implements IGridMachine {
 		MinecraftForge.EVENT_BUS.post(new GridTileUnloadEvent(this, worldObj,
 				getLocation()));
 
-	}
-	
-	@Override
-	public void writeToNBT(NBTTagCompound compound) {
-		super.writeToNBT(compound);
-		
-		compound.setByte("Ticker", ticker);
-		compound.setFloat("HeatPercentage", heatPercent);
-		compound.setShort("meltingTicker", meltTicker);
-		
-	}
-	
-	@Override
-	public void readFromNBT(NBTTagCompound compound) {
-		super.readFromNBT(compound);
-		
-		ticker = compound.getByte("Ticker");
-		heatPercent = compound.getFloat("HeatPercentage");
-		meltTicker = compound.getShort("meltingTicker");
-		
 	}
 
 }

@@ -10,11 +10,17 @@ public class Items {
 
 	public static Item Shard;
 	public static Item Core;
+	public static Item Goo;
+	public static Item Droid;
 
 	public static void init() {
 		Shard = new ItemShard(ItemInfo.SHARD_ID);
 
 		Core = new ItemCoreLapis(ItemInfo.CORE_ID);
+		
+		Goo = new ItemMEGoo(ItemInfo.GOO_ID);
+		
+		Droid = new ItemDroid(ItemInfo.DROID_ID);
 	}
 
 	public static void addNames() {
@@ -24,6 +30,10 @@ public class Items {
 			LanguageRegistry.addName(new ItemStack(Core, 1, i),
 					ItemInfo.CORE_NAMES[i]);
 		}
+		
+		LanguageRegistry.addName(Goo, ItemInfo.GOO_NAME);
+		
+		LanguageRegistry.addName(Droid, ItemInfo.DROID_NAME);
 	}
 
 	public static void registerRecipes() {
