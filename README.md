@@ -1,12 +1,22 @@
 AdditionalFeatures
 ==================
+This is the Github for the Upcoming mod, Applied Thermodynamics.
 
-Adds Features, duh!
+its named additional features since i am not near release yet, and additional features has some examples i made that i use.
 
-Currently many features are planned. few are implemented.
 
-you want to use latest possible download. then build this with the default forge stuff.
+Other than that. 
 
-right now this is nothing, versioning is pre-alpha.
+AT (Applied Thermodynamics) is a mod that adds Heat to ME Networks, the bigger and more power hungry the network is, the faster it heats up,
+the hotter the network gets, more and more bad effects happen, from particles and sounds to the Melting of your network into Liquid ME.
 
-official release is never.
+there are also ways to cool your system, right now non are fully implemented, but planned:
+
+Wind Crank ( manually operated cooling machine)
+Liquid Cooler (cools the network based on the liquid it is supplied)
+Fan (it blows wind)
+More and More.
+
+As for suggestions and comments about my code and more ideas, visit #AppliedEnergistics @ irc.esper.net which is where i usually am when i work on AT.
+
+My hope for release is 1.7 for AE2. no promises at all.
