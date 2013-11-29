@@ -65,10 +65,9 @@ public class AddFeat {
 		Entities.init();
 		new GuiHandler();
 
-		if (ConfigInfo.ENABLE_HEAT) {
-			Util.getAppEngApi().getGridCacheRegistry()
-			.registerGridCache(LogicHeat.class);
-		}
+		ModInfo.heatCacheID = Util.getAppEngApi().getGridCacheRegistry()
+				.registerGridCache(LogicHeat.class);
+
 	}
 
 	@EventHandler

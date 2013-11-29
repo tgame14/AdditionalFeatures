@@ -1,0 +1,16 @@
+[
+{
+"modid": "AddFeat",
+"name": "Additional Features",
+"description": "Extending Applied Energistics Networks with a new HEAT Feature to manage. Also Melts Your S***",
+"version": "",
+"credits": "Created by tgame14, Lots of help from #AppliedEnergistics @ irc.esper.net, Special Thanks to the Double Fairy Advisor raydeejay, thatsIch, AlgroithmX2 and M3gaFr3ak For lots of help with Ideas and Creation.",
+"logoFile": "",
+"mcversion": "",
+"url": "",
+"updateUrl": "",
+"authors": [ "tgame14" ],
+"parent":"",
+"screenshots": [],
+"dependencies": [mod_MinecraftForge]
+}

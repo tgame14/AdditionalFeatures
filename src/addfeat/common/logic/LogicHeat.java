@@ -54,6 +54,10 @@ public class LogicHeat implements IGridCache {
 
 	@Override
 	public void reset(IGridInterface grid) {
+		setLiquidCount(grid);
+	}
+
+	public void setLiquidCount(IGridInterface grid) {
 		liquidCount = 0;
 
 		for (int i = 0; i < grid.getMachines().size(); i++) {
@@ -74,6 +78,7 @@ public class LogicHeat implements IGridCache {
 			}
 		}
 		System.out.println(liquidCount);
+
 	}
 
 	private float calculateHeat(IGridInterface grid, float totalPower) {
@@ -100,7 +105,7 @@ public class LogicHeat implements IGridCache {
 	}
 
 	private boolean isSafeFromMelt(TileRef machine) {
-		
+
 		int machineBlockID = machine.getCoord().getWorld()
 				.getBlockId(machine.x, machine.y, machine.z);
 		int controllerID = Blocks.blkController.itemID;

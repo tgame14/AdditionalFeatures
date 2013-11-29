@@ -42,11 +42,11 @@ public class BlockLiquidCooler extends BlockContainer {
 		frontIcon = iconregister.registerIcon(ModInfo.TEXTURE_LOCATION + ":"
 				+ BlockInfo.LIQUICOOL_TEXUTRES[0]);
 		sideIcon = iconregister.registerIcon(ModInfo.TEXTURE_LOCATION + ":"
-				+ BlockInfo.LIQUICOOL_TEXUTRES[1]);
+				+ BlockInfo.LIQUICOOL_TEXUTRES[0]);
 		bottomIcon = iconregister.registerIcon(ModInfo.TEXTURE_LOCATION + ":"
-				+ BlockInfo.LIQUICOOL_TEXUTRES[2]);
+				+ BlockInfo.LIQUICOOL_TEXUTRES[0]);
 		topIcon = iconregister.registerIcon(ModInfo.TEXTURE_LOCATION + ":"
-				+ BlockInfo.LIQUICOOL_TEXUTRES[3]);
+				+ BlockInfo.LIQUICOOL_TEXUTRES[0]);
 	}
 
 	@Override
