@@ -97,7 +97,7 @@ public class BlockInfo {
 	public static final String MONITOR_UNLOCALIZED_NAME = "MEHeatMonitor";
 	public static final String MONITOR_TE_KEY = "TileEntityMEMonitor";
 	public static final String[] MONITOR_TEXTURES = { "exhaustBot",
-			"monitorFace" };
+			"monitorFaceFull", "monitorFaceNearFull", "monitorFaceNearEmpty", "monitorFaceEmpty" };
 
 	public static int LIQUICOOL_ID;
 	public static final int LIQUICOOL_DEFAULT = config++;

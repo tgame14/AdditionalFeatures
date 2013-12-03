@@ -1,7 +1,9 @@
 package addfeat.common.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -12,7 +14,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import addfeat.common.AddFeat;
 import addfeat.common.ModInfo;
+import addfeat.common.client.renderers.ATBlockRendererHelper;
 import addfeat.common.tileentities.TileEntityHeatMonitor;
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -28,45 +32,38 @@ public class BlockMonitorME extends BlockContainer {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public Icon frontIcon;
+	public Icon sideIcon;
 	@SideOnly(Side.CLIENT)
-	Icon sideIcon;
+	public Icon bottomIcon;
 	@SideOnly(Side.CLIENT)
-	Icon bottomIcon;
+	public Icon topIcon;
 	@SideOnly(Side.CLIENT)
-	Icon topIcon;
+	public Icon frontIconFull;
+	@SideOnly(Side.CLIENT)
+	public Icon frontIconNearFull;
+	@SideOnly(Side.CLIENT)
+	public Icon frontIconNearEmpty;
+	@SideOnly(Side.CLIENT)
+	public Icon frontIconEmpty;
 
 	@Override
-	public void registerIcons(IconRegister iconregister) {
+	public void registerIcons(IconRegister register) {
 
-		frontIcon = iconregister.registerIcon(ModInfo.TEXTURE_LOCATION + ":"
+		frontIconFull = register.registerIcon(ModInfo.TEXTURE_LOCATION + ":"
 				+ BlockInfo.MONITOR_TEXTURES[1]);
-		sideIcon = iconregister.registerIcon(ModInfo.TEXTURE_LOCATION + ":"
+		frontIconNearFull = register.registerIcon(ModInfo.TEXTURE_LOCATION
+				+ ":" + BlockInfo.MONITOR_TEXTURES[2]);
+		frontIconNearEmpty = register.registerIcon(ModInfo.TEXTURE_LOCATION
+				+ ":" + BlockInfo.MONITOR_TEXTURES[3]);
+		frontIconEmpty = register.registerIcon(ModInfo.TEXTURE_LOCATION + ":"
+				+ BlockInfo.MONITOR_TEXTURES[4]);
+
+		sideIcon = register.registerIcon(ModInfo.TEXTURE_LOCATION + ":"
 				+ BlockInfo.EXHAUST_TEXTURES[1]);
-		bottomIcon = iconregister.registerIcon(ModInfo.TEXTURE_LOCATION + ":"
+		bottomIcon = register.registerIcon(ModInfo.TEXTURE_LOCATION + ":"
 				+ BlockInfo.MONITOR_TEXTURES[0]);
-		topIcon = iconregister.registerIcon(ModInfo.TEXTURE_LOCATION + ":"
+		topIcon = register.registerIcon(ModInfo.TEXTURE_LOCATION + ":"
 				+ BlockInfo.MONITOR_TEXTURES[0]);
-	}
-
-	@SideOnly(Side.CLIENT)
-	public Icon getIcon(int side, int metadata) {
-		return side == 3 ? frontIcon : side == 0 ? bottomIcon
-				: side == 1 ? topIcon : sideIcon;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public Icon getBlockTexture(IBlockAccess blockAccess, int x, int y, int z,
-			int side) {
-		TileEntity tileentity = blockAccess.getBlockTileEntity(x, y, z);
-		int metadata = blockAccess.getBlockMetadata(x, y, z);
-
-		if (tileentity != null) {
-			return side == metadata ? frontIcon : side == 0 ? bottomIcon
-					: side == 1 ? topIcon : sideIcon;
-		}
-		return null;
 	}
 
 	@Override
@@ -78,20 +75,29 @@ public class BlockMonitorME extends BlockContainer {
 
 		if (l == 0) {
 			world.setBlockMetadataWithNotify(x, y, z, 2, 2);
+			System.out.println(2);
 		}
 
 		if (l == 1) {
 			world.setBlockMetadataWithNotify(x, y, z, 5, 2);
+			System.out.println(5);
 		}
 
 		if (l == 2) {
 			world.setBlockMetadataWithNotify(x, y, z, 3, 2);
+			System.out.println(3);
 		}
 
 		if (l == 3) {
 			world.setBlockMetadataWithNotify(x, y, z, 4, 2);
+			System.out.println(4);
 		}
 	}
+
+	/*
+	 * @Override public int getRenderType() { return
+	 * ATBlockRendererHelper.myRenderID; }
+	 */
 
 	@Override
 	public TileEntity createNewTileEntity(World world) {

@@ -1,11 +1,9 @@
 package addfeat.common;
 
+import net.minecraft.creativetab.CreativeTabs;
 import addfeat.common.blocks.Blocks;
-import addfeat.common.items.ItemInfo;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 
 public final class AddFeatTab extends CreativeTabs {
 

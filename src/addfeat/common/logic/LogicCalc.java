@@ -2,7 +2,6 @@ package addfeat.common.logic;
 
 import java.util.List;
 
-import net.minecraft.tileentity.TileEntity;
 import appeng.api.TileRef;
 import appeng.api.exceptions.AppEngTileMissingException;
 import appeng.api.me.tiles.ICellContainer;
@@ -23,7 +22,7 @@ public class LogicCalc {
 		machineList = grid.getMachines();
 
 	}
-	
+
 	protected void refreshMachineList() {
 		machineList = grid.getMachines();
 	}
@@ -33,16 +32,14 @@ public class LogicCalc {
 		return raw;
 	}
 
-	
-
 	protected int calcAmountOfMachine(TileRef tile) {
 		int count = 0;
-		
+
 		Object te = null;
 
 		try {
 			te = tile.getTile();
-			
+
 		} catch (AppEngTileMissingException e) {
 			e.printStackTrace();
 		}
@@ -55,7 +52,6 @@ public class LogicCalc {
 		}
 		return count;
 	}
-	
 
 	protected float calcFinalHeat(float rawHeat, float coolant) {
 
@@ -71,7 +67,7 @@ public class LogicCalc {
 		}
 		return true;
 	}
-	
+
 	protected boolean isSafeFromMelt(TileRef tile) {
 		Object te = null;
 

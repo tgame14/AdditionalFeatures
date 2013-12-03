@@ -73,7 +73,7 @@ public class HeatEffects {
 			StageThree();
 		}
 
-		if (heatValue >= 0.5) {
+		if (heatValue >= 0.6) {
 			StageTwo();
 		}
 
