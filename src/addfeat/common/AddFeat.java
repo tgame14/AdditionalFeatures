@@ -12,6 +12,7 @@ import addfeat.common.items.Items;
 import addfeat.common.logic.LogicHeat;
 import addfeat.common.network.PacketHandler;
 import addfeat.common.proxies.CommonProxy;
+import addfeat.common.tileentities.TileEntities;
 import appeng.api.Util;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -43,7 +44,7 @@ public class AddFeat {
 		Fluids.initFluidProperties();
 		Items.init();
 		Blocks.init();
-		Blocks.registerTileEntities();
+		TileEntities.init();
 
 		proxy.initSounds();
 		proxy.initRenderers();

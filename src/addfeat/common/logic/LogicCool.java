@@ -1,16 +1,21 @@
 
 package addfeat.common.logic;
 
-import java.util.List;
-
+import net.minecraft.tileentity.TileEntity;
 import addfeat.common.tileentities.TileEntityAirIntake;
+import addfeat.common.tileentities.TileEntityLiquidCooler;
 import appeng.api.TileRef;
-import appeng.api.me.tiles.IGridMachine;
 import appeng.api.me.util.IGridInterface;
 
 
 /**
- * The Class LogicCool.
+ * The Class LogicCool, Does all the logic regarding different coolants.
+ * 
+ * coolants are split into two types, Active and Passive.
+ * 
+ * if a coolant is passive, it is always effective and working.
+ * 
+ * if its active, it has a active and non active state.
  * 
  * @author tgame14
  */
@@ -19,85 +24,101 @@ public class LogicCool {
 	/** The grid. */
 	private IGridInterface grid;
 	
-	/** The liqui count. */
+	/** The liquid Coolers count. */
 	private int liquiCount;
 	
-	/** The intake count. */
-	private int intakeCount;
+	/** The air intakes count. */
+	private int intakeCount; 
 	
-	/** The machine list. */
-	private List machineList;
+	/** The total cooling value of all coolants. */
+	private float coolingValue;
 	
-	/** The x. */
-	private int x; 
+	/** The instance of LogicCalc from LogicBase. */
+	private LogicCalc calc;
+	
+	private TileEntityLiquidCooler TileLiquidCooler;
+	
+	private TileEntityAirIntake TileAirIntake;
 	
 	/**
 	 * Instantiates a new logic cool.
 	 *
-	 * @param gi the gi
+	 * @param gi the grid
+	 * @param logicCalc the logicCalc - instance of LogicCalc to give access to some calculation methods.
 	 */
-	protected LogicCool(IGridInterface gi) {
+	protected LogicCool(IGridInterface gi, LogicCalc logicCalc) {
 		grid = gi;
-		machineList = grid.getMachines();
+		calc = logicCalc;
 		
+		TileLiquidCooler = new TileEntityLiquidCooler();
+		TileAirIntake = new TileEntityAirIntake();
 
 	}
 	
-
-
 	/**
-	 * Gets the machine list.
-	 *
-	 * @return the machine list
+	 * Refreshes the counts of entire coolants, should be called on whenever one of the coolant's state has changed
+	 * or the network has been reset.
 	 */
-	private List getMachineList() {
-		return machineList;
+	protected void refreshCoolants() {
+		liquiCount = calc.calcAmountOfMachine(new TileRef(TileLiquidCooler));
+		intakeCount = calc.calcAmountOfMachine(new TileRef(TileAirIntake));
 	}
-
+	
+	
 	/**
-	 * Sets the machine list.
-	 *
-	 * @param List the new machine list
+	 * this is where the math is done for calculation of coolants. it is based
+	 * on mathematical equations that are the base for sets and such, Deeper
+	 * explanation of the math behind it can be supplied from
+	 * 
+	 * See {@linktourl http://en.wikipedia.org/wiki/Geometric_progression}
+	 * 
+	 * @param int Amount of Active Coolants
+	 * @param float percent decrease per machine (has to be < 1 )
+	 * 
+	 * @return double cooling value of coolant
 	 */
-	private void setMachineList(List List) {
-		machineList = List;
-	}
+	private float calcCoolantValue(int activeCoolants, float decrPercent, float firstDeminish) {
+		float firstValue = calc.calcRawHeat() * firstDeminish;
 
+		float totalCoolant = (float) ((firstValue
+				* (Math.pow(decrPercent, activeCoolants)) - 1) / (decrPercent - 1));
+
+		return totalCoolant;
+
+	}
+	
+	protected float calcTotalCoolant() {
+		float intakeCoolant = calcCoolantValue(intakeCount, 0.6F, 0.05F);
+		float liquidCoolant = calcCoolantValue(liquiCount, 0.9F, 0.1F);
+		
+		coolingValue = intakeCoolant + liquidCoolant;
+		return coolingValue;
+		
+	}
+	
+	
+	
 	/**
-	 * Gets the liqui count.
+	 * Gets the liquid coolers count.
 	 *
-	 * @return the liqui count
+	 * @return the liquid coolers count
 	 */
 	protected int getLiquiCount() {
 		return liquiCount;
 	}
 
-	/**
-	 * Sets the liqui count.
-	 *
-	 * @param liquiCount the new liqui count
-	 */
-	protected void setLiquiCount(int liquiCount) {
-		this.liquiCount = liquiCount;
-	}
+	
 
 	/**
-	 * Gets the intake count.
+	 * Gets the air intakes count.
 	 *
-	 * @return the intake count
+	 * @return the air intakes count
 	 */
 	protected int getIntakeCount() {
 		return intakeCount;
 	}
 
-	/**
-	 * Sets the intake count.
-	 *
-	 * @param intakeCount the new intake count
-	 */
-	protected void setIntakeCount(int intakeCount) {
-		this.intakeCount = intakeCount;
-	}
+	
 	
 	
 

@@ -21,7 +21,7 @@ public class AEBaseMachine extends TileEntity implements IGridMachine {
 	protected IGridInterface grid;
 
 	public AEBaseMachine() {
-
+		
 	}
 
 	@Override
