@@ -97,7 +97,7 @@ public class BlockInfo {
 	public static final String MONITOR_UNLOCALIZED_NAME = "MEHeatMonitor";
 	public static final String MONITOR_TE_KEY = "TileEntityMEMonitor";
 	public static final String[] MONITOR_TEXTURES = { "exhaustBot",
-			"MonitorFace" };
+			"monitorFace" };
 
 	public static int LIQUICOOL_ID;
 	public static final int LIQUICOOL_DEFAULT = config++;
@@ -107,5 +107,13 @@ public class BlockInfo {
 	public static final String LIQUICOOL_TE_KEY = "TileEntityMELiquidCooler";
 	public static final String[] LIQUICOOL_TEXUTRES = { "liquiFace",
 			"liquiSides", "liquiTop", "liquiBot" };
+	
+	public static int INTAKE_ID;
+	public static final int INTAKE_DEFAULT = config++;
+	public static final String INTAKE_KEY = "AirIntake";
+	public static final String INTAKE_NAME = "ME Air Intake";
+	public static final String INTAKE_UNLOCALIZED_NAME = "airIntake";
+	public static final String INTAKE_TE_KEY = "TileEntityAirIntake";
+	public static final String INTAKE_TEXTURE = "airIntake";
 
 }

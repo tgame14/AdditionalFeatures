@@ -47,6 +47,8 @@ public class ConfigHandler {
 				BlockInfo.MONITOR_DEFAULT).getInt();
 		BlockInfo.LIQUICOOL_ID = config.getBlock(BlockInfo.LIQUICOOL_KEY,
 				BlockInfo.LIQUICOOL_DEFAULT).getInt();
+		BlockInfo.INTAKE_ID = config.getBlock(BlockInfo.INTAKE_KEY,
+				BlockInfo.INTAKE_DEFAULT).getInt();
 
 		// Config Registry for Disabling and Enabling Features
 		ConfigInfo.FURNACE_RECIPES = config.get(ConfigInfo.FEATURE_KEY,
@@ -63,6 +65,8 @@ public class ConfigHandler {
 				ConfigInfo.ENABLE_HEAT_KEY, ConfigInfo.ENABLE_HEAT_DEFAULT)
 				.getBoolean(ConfigInfo.ENABLE_HEAT_DEFAULT);
 
+		
+		// junk registration
 		ItemInfo.SHARD_ID = config.getItem(ItemInfo.SHARD_KEY,
 				ItemInfo.SHARD_DEFAULT).getInt() - 256;
 		ItemInfo.CORE_ID = config.getItem(ItemInfo.CORE_KEY,
@@ -70,6 +74,7 @@ public class ConfigHandler {
 		ItemInfo.DROID_ID = config.getItem(ItemInfo.DROID_KEY,
 				ItemInfo.DROID_DEFAULT).getInt() - 256;
 
+		// AT registration
 		ItemInfo.GOO_ID = config
 				.getItem(ItemInfo.GOO_KEY, ItemInfo.GOO_DEFAULT).getInt() - 256;
 

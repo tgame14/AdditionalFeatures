@@ -20,23 +20,24 @@ import appeng.api.events.GridTileUnloadEvent;
 import appeng.api.me.tiles.IGridMachine;
 import appeng.api.me.util.IGridInterface;
 
-public class TileEntityLiquidCooler extends TileEntity implements IGridMachine,
+public class TileEntityLiquidCooler extends AEBaseMachine implements
 		IFluidHandler {
 
-	private boolean powerStatus, networkReady, isActive, ticked, refreshCount;
+	private boolean isActive, ticked, refreshCount;
 	private IGridInterface grid;
 	private int drainAmount;
 	private LogicHeat logic;
+	private FluidStack prevStack;
 
 	protected FluidTank tank = new FluidTank(16000);
 
 	public TileEntityLiquidCooler() {
 		isActive = false;
 		drainAmount = 5;
-		powerStatus = false;
-		networkReady = false;
+		
 		ticked = false;
 		refreshCount = true;
+		prevStack = tank.getFluid();
 
 	}
 
@@ -64,19 +65,21 @@ public class TileEntityLiquidCooler extends TileEntity implements IGridMachine,
 		isActive = state;
 	}
 
-	private int setDrainAmount(Fluid setFluid) {
-		Fluid coldFluid;
+	private int setDrainAmount(FluidStack fluid) {
+		FluidStack coldFluid;
 		int consume = 5;
 
 		for (CoolingFluids dir : CoolingFluids.values()) {
-			coldFluid = FluidRegistry.getFluid(dir.fluidName);
-			if (coldFluid.equals(setFluid))
+			coldFluid = new FluidStack(FluidRegistry.getFluid(dir.fluidName),
+					fluid.amount);
+			if (coldFluid.isFluidEqual(fluid)) {
 				consume = dir.consumePerTick;
+			}
 		}
 
 		return consume;
 	}
-	
+
 	private void callRefresh() {
 		logic.setLiquidCount(grid);
 	}
@@ -89,20 +92,14 @@ public class TileEntityLiquidCooler extends TileEntity implements IGridMachine,
 				ticked = true;
 			}
 
-			if (powerStatus) {
+			if (isPowered()) {
 				System.out.println("itsPowered");
-
-				if (refreshCount) {
-					System.out.println("Refreshes");
-					logic.setLiquidCount(grid);
-					refreshCount = false;
-				}
-				
 
 				/*
 				 * drainAmount changes per liquid in the tank. colder liquids
 				 * will drain less, hotter will drain faster
 				 */
+
 				tank.drain(drainAmount, true);
 				System.out.println("draining = " + drainAmount);
 
@@ -198,10 +195,16 @@ public class TileEntityLiquidCooler extends TileEntity implements IGridMachine,
 				|| canFill(from, resource.getFluid()))
 			return 0;
 
+		if (tank.getFluid() == null) {
+			drainAmount = setDrainAmount(resource);
+		}
+
 		int filled = 0;
 
 		filled += tank.fill(resource, doFill);
 		setIsActive(filled > 0);
+		logic.setLiquidCount(grid);
+		prevStack = resource;
 		return filled;
 	}
 
@@ -209,7 +212,7 @@ public class TileEntityLiquidCooler extends TileEntity implements IGridMachine,
 	public FluidStack drain(ForgeDirection from, FluidStack resource,
 			boolean doDrain) {
 
-		drainAmount = setDrainAmount(resource.getFluid());
+		drainAmount = setDrainAmount(resource);
 
 		if (resource == null || !resource.isFluidEqual(tank.getFluid())) {
 			callRefresh();
@@ -218,7 +221,7 @@ public class TileEntityLiquidCooler extends TileEntity implements IGridMachine,
 
 		FluidStack drained = resource != null ? tank.drain(resource.amount,
 				doDrain) : null;
-		
+
 		return drained;
 	}
 
@@ -226,15 +229,13 @@ public class TileEntityLiquidCooler extends TileEntity implements IGridMachine,
 	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
 		if (tank.getFluid() == null)
 			return null;
-		
-		
 
 		return drain(from, new FluidStack(tank.getFluid(), maxDrain), doDrain);
 	}
 
 	@Override
 	public boolean canFill(ForgeDirection from, Fluid fluid) {
-		
+
 		FluidStack coldFluid;
 		FluidStack resource = new FluidStack(fluid, 0);
 

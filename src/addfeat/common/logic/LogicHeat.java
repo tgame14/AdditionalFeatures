@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package addfeat.common.logic;
 
 import java.util.Random;
@@ -19,16 +22,33 @@ import appeng.api.me.util.IGridInterface;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LogicHeat.
+ */
 public class LogicHeat implements IGridCache {
 
+	/** The rnd. */
 	Random rnd = new Random();
 
+	/** The tick power. */
 	private float heatPercent, heatIntake, tickPower;
+	
+	/** The melt ticker. */
 	private short meltTicker;
+	
+	/** The smoke ticker. */
 	private byte smokeTicker;
+	
+	/** The ticked. */
 	private boolean ticked;
+	
+	/** The liquid count. */
 	private int liquidCount;
 
+	/**
+	 * Instantiates a new logic heat.
+	 */
 	public LogicHeat() {
 		heatPercent = 0;
 		meltTicker = 0;
@@ -40,6 +60,9 @@ public class LogicHeat implements IGridCache {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see appeng.api.me.util.IGridCache#onUpdateTick(appeng.api.me.util.IGridInterface)
+	 */
 	@Override
 	public void onUpdateTick(IGridInterface grid) {
 		tickPower = grid.getPowerUsageAvg();
@@ -52,11 +75,19 @@ public class LogicHeat implements IGridCache {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see appeng.api.me.util.IGridCache#reset(appeng.api.me.util.IGridInterface)
+	 */
 	@Override
 	public void reset(IGridInterface grid) {
 		setLiquidCount(grid);
 	}
 
+	/**
+	 * Sets the liquid count.
+	 *
+	 * @param grid the new liquid count
+	 */
 	public void setLiquidCount(IGridInterface grid) {
 		liquidCount = 0;
 
@@ -81,6 +112,13 @@ public class LogicHeat implements IGridCache {
 
 	}
 
+	/**
+	 * Calculate heat.
+	 *
+	 * @param grid the grid
+	 * @param totalPower the total power
+	 * @return the float
+	 */
 	private float calculateHeat(IGridInterface grid, float totalPower) {
 		float usage = (totalPower / 2) / 100;
 		usage -= liquidCount * 0.10F;
@@ -88,6 +126,13 @@ public class LogicHeat implements IGridCache {
 
 	}
 
+	/**
+	 * Calculate heat intake.
+	 *
+	 * @param grid the grid
+	 * @param totalPower the total power
+	 * @return the float
+	 */
 	private float calculateHeatIntake(IGridInterface grid, float totalPower) {
 		float intake = heatPercent * totalPower;
 
@@ -95,6 +140,12 @@ public class LogicHeat implements IGridCache {
 
 	}
 
+	/**
+	 * Checks if is bare bones.
+	 *
+	 * @param grid the grid
+	 * @return true, if is bare bones
+	 */
 	private boolean isBareBones(IGridInterface grid) {
 		for (int i = 0; i < grid.getMachines().size(); i++) {
 			if (!(isSafeFromMelt(grid.getMachines().get(i)))) {
@@ -104,6 +155,12 @@ public class LogicHeat implements IGridCache {
 		return true;
 	}
 
+	/**
+	 * Checks if is safe from melt.
+	 *
+	 * @param machine the machine
+	 * @return true, if is safe from melt
+	 */
 	private boolean isSafeFromMelt(TileRef machine) {
 
 		int machineBlockID = machine.getCoord().getWorld()
@@ -126,6 +183,11 @@ public class LogicHeat implements IGridCache {
 
 	}
 
+	/**
+	 * On over heat.
+	 *
+	 * @param grid the grid
+	 */
 	private void OnOverHeat(IGridInterface grid) {
 		if (!(isBareBones(grid))) {
 
@@ -143,7 +205,7 @@ public class LogicHeat implements IGridCache {
 			}
 			meltTicker--;
 
-			if (heatPercent >= 0.66) {
+			if (heatPercent >= 0.0) {
 				if (smokeTicker == 5) {
 					TileRef tile = getRandomAETile(grid, rnd);
 
@@ -155,7 +217,7 @@ public class LogicHeat implements IGridCache {
 
 			}
 
-			if (heatPercent >= 0.25) {
+			if (heatPercent >= 0.0) {
 				if (smokeTicker <= 0) {
 					TileRef tile = getRandomAETile(grid, rnd);
 
@@ -173,6 +235,13 @@ public class LogicHeat implements IGridCache {
 
 	}
 
+	/**
+	 * Gets the random ae tile.
+	 *
+	 * @param grid the grid
+	 * @param rand the rand
+	 * @return the random ae tile
+	 */
 	private TileRef getRandomAETile(IGridInterface grid, Random rand) {
 		int lengthOfList = grid.getMachines().size();
 		int indexOfList;
@@ -188,12 +257,18 @@ public class LogicHeat implements IGridCache {
 		return machine;
 	}
 
+	/* (non-Javadoc)
+	 * @see appeng.api.me.util.IGridCache#getCacheName()
+	 */
 	@Override
 	public String getCacheName() {
 		return "MadheatPoweredBandit";
 
 	}
 
+	/* (non-Javadoc)
+	 * @see appeng.api.me.util.IGridCache#savetoNBTData()
+	 */
 	@Override
 	public NBTTagCompound savetoNBTData() {
 		NBTTagCompound heatData = new NBTTagCompound();
@@ -204,6 +279,9 @@ public class LogicHeat implements IGridCache {
 		return heatData;
 	}
 
+	/* (non-Javadoc)
+	 * @see appeng.api.me.util.IGridCache#loadfromNBTData(net.minecraft.nbt.NBTTagCompound)
+	 */
 	@Override
 	public void loadfromNBTData(NBTTagCompound data) {
 		meltTicker = data.getShort("MeltTimer");
@@ -211,6 +289,14 @@ public class LogicHeat implements IGridCache {
 
 	}
 
+	/**
+	 * Receive entity fx packet.
+	 *
+	 * @param effectId the effect id
+	 * @param x the x
+	 * @param y the y
+	 * @param z the z
+	 */
 	@SideOnly(Side.CLIENT)
 	public void receiveEntityFXPacket(byte effectId, int x, int y, int z) {
 

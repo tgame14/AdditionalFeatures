@@ -15,7 +15,7 @@ import appeng.api.me.tiles.IGridMachine;
 import appeng.api.me.tiles.IGridTileEntity;
 import appeng.api.me.util.IGridInterface;
 
-public class TileEntityMEExhaust extends TileEntity implements IGridTileEntity {
+public class TileEntityMEExhaust extends AEBaseMachine {
 
 	private boolean powerStatus = false, networkReady = false;
 	private IGridInterface grid;
@@ -41,63 +41,6 @@ public class TileEntityMEExhaust extends TileEntity implements IGridTileEntity {
 			}
 			gooTimer--;
 		}
-
-	}
-
-	@Override
-	public WorldCoord getLocation() {
-		return new WorldCoord(xCoord, yCoord, zCoord);
-
-	}
-
-	@Override
-	public boolean isValid() {
-		return true;
-	}
-
-	@Override
-	public void setPowerStatus(boolean hasPower) {
-		powerStatus = hasPower;
-
-	}
-
-	@Override
-	public boolean isPowered() {
-		return powerStatus;
-
-	}
-
-	@Override
-	public IGridInterface getGrid() {
-		return grid;
-
-	}
-
-	@Override
-	public void setGrid(IGridInterface gi) {
-		grid = gi;
-
-	}
-
-	@Override
-	public World getWorld() {
-		return worldObj;
-
-	}
-
-	@Override
-	public void validate() {
-		super.validate();
-		MinecraftForge.EVENT_BUS.post(new GridTileLoadEvent(this, worldObj,
-				getLocation()));
-	}
-
-	@Override
-	public void invalidate() {
-		super.invalidate();
-		MinecraftForge.EVENT_BUS.post(new GridTileUnloadEvent(this, worldObj,
-				getLocation()));
-
 	}
 
 }
