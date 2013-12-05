@@ -12,8 +12,9 @@
 /src/mcpmod.info
 /src/Start.JAVA
 /src/appeng/*
+/src/*
 /src/SyncToy_797a5cb2-8e2f-48ac-b4bf-213cb6308d14.dat
 /src/SyncToy_c105a3be-dd26-4bc9-b27c-227e354a903a.dat
 
 
-!/src/addfeat/*
+/src/addfeat/*
